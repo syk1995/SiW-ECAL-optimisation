@@ -71,12 +71,12 @@ def get_fit_params_from_file(filename='/grid_mnt/vol_home/llr/ilc/oprea/code/Ene
                     gaussian_2_sigma_N_hits_params[current_energy] = ast.literal_eval(line.split(":", 1)[1].strip())
                 elif line.startswith(f"RMS90_N_hits_{current_energy}:"):
                     rms90_N_hits_params[current_energy] = ast.literal_eval(line.split(":", 1)[1].strip())
-#        print("Extracted parameters:")
-#        print("Gamma (Sum E):", gamma_params_sum_E)
+        print("Extracted parameters:")
+        print("Gamma (Sum E):", gamma_params_sum_E)
 #        print("Log-normal (Sum E):", log_normal_params_sum_E)
 #        print("Gaussian (Sum E):", gaussian_params_sum_E)
 #        print("Gaussian 2 sigma (Sum E):", gaussian_params_sum_E)
-#        print("Gamma (N Hits):", gamma_N_hits_params)
+        print("Gamma (N Hits):", gamma_N_hits_params)
 #        print("Log-normal (N Hits):", log_normal_N_hits_params)
 #        print("Gaussian (N Hits):", gaussian_N_hits_params)
 #        print("Gaussian 2 sigma (N Hits):", gaussian_N_hits_params)
@@ -184,20 +184,31 @@ def get_fit_params_for_N_hits(fit_type='gamma'):
     return fit_params[key_map[fit_type]]
 
 
-def calculate_resolution_and_linearity_for_sum_E(sum_E_params, fit_type='gamma'):
+def calculate_resolution_and_linearity_for_sum_E(sum_E_params, peaks_dict, fit_type='gamma'):
+    """
+    Calculates means, stds, resolutions (sigma/mu), and resolutions_peak (peak/mu) for sum_E.
+    peaks_dict should be the output of get_peaks_from_file()['sum_E'].
+    """
     means = {}
     stds = {}
     resolutions = {}
+    resolutions_peak = {}
     if fit_type not in ['gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma', 'rms90']:
-        raise ValueError("fit_type must be one of 'gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma, or 'rms90")
-    means[fit_type]={}
-    stds[fit_type]={}
-    resolutions[fit_type]={}
+        raise ValueError("fit_type must be one of 'gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma, or 'rms90'")
+    means[fit_type] = {}
+    stds[fit_type] = {}
+    resolutions[fit_type] = {}
+    resolutions_peak[fit_type] = {}
+
+    # peaks_dict is expected to be e.g. get_peaks_from_file()['sum_E']['gamma'] for fit_type='gamma'
+    peaks_for_type = peaks_dict.get(fit_type, {})
+
     for energy in sorted(sum_E_params.keys()):
         p = sum_E_params[energy]
+        peak = peaks_for_type.get(energy, None)
         if fit_type == 'gamma':
-            mean = p[1] * p[2]
-            std = np.sqrt(p[1]) * p[2]
+            mean = p[1] * p[3]
+            std = np.sqrt(p[1]) * p[3]
         elif fit_type == 'log_normal':
             mean = p[2] * np.exp(0.5 * p[1]**2)
             std = p[2] * np.sqrt(np.exp(p[1]**2) - 1) * np.exp(0.5 * p[1]**2)
@@ -211,10 +222,13 @@ def calculate_resolution_and_linearity_for_sum_E(sum_E_params, fit_type='gamma')
             mean = p[0]
             std = p[1]
         resolution = std / mean
+        # Only compute resolution_peak if peak is available
+        resolution_peak = peak / mean if peak is not None else None
         means[fit_type][energy] = mean
         stds[fit_type][energy] = std
-        resolutions[energy] = resolution
-    return means, stds, resolutions
+        resolutions[fit_type][energy] = resolution
+        resolutions_peak[fit_type][energy] = resolution_peak
+    return means, stds, resolutions, resolutions_peak
 
 # dictionaries will be something like:
 # means = {
@@ -237,16 +251,27 @@ def calculate_resolution_and_linearity_for_sum_E(sum_E_params, fit_type='gamma')
 
 
 def calculate_resolution_and_linearity_for_N_hits(N_hits_params, fit_type='gamma'):
+    """
+    Calculates means, stds, and resolutions (sigma/mu) for N_hits.
+    """
     means = {}
     stds = {}
     resolutions = {}
+    resolutions_peak = {}
     if fit_type not in ['gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma', 'rms90']:
-        raise ValueError("fit_type must be one of 'gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma, or 'rms90")
+        raise ValueError("fit_type must be one of 'gamma', 'log_normal', 'gaussian', 'gaussian_2_sigma, or 'rms90'")
     means[fit_type] = {}
     stds[fit_type] = {}
     resolutions[fit_type] = {}
+    resolutions_peak[fit_type] = {}
+
+    # peaks_dict is expected to be e.g. get_peaks_from_file()['N_hits']['gamma'] for fit_type='gamma'
+    peaks_dict = get_peaks_from_file()['N_hits']
+    peaks_for_type = peaks_dict.get(fit_type, {})
+
     for energy in sorted(N_hits_params.keys()):
         p = N_hits_params[energy]
+        peak = peaks_for_type.get(energy, None)
         if fit_type == 'gamma':
             mean = p[1] * p[2]
             std = np.sqrt(p[1]) * p[2]
@@ -263,10 +288,12 @@ def calculate_resolution_and_linearity_for_N_hits(N_hits_params, fit_type='gamma
             mean = p[0]
             std = p[1]
         resolution = std / mean
+        resolution_peak = peak / mean if peak is not None else None
         means[fit_type][energy] = mean
         stds[fit_type][energy] = std
-        resolutions[energy] = resolution
-    return means, stds, resolutions
+        resolutions[fit_type][energy] = resolution
+        resolutions_peak[fit_type][energy] = resolution_peak
+    return means, stds, resolutions, resolutions_peak
 #The dictionary will be the same as for the sum_E function
 
 
@@ -322,12 +349,12 @@ def plot_resolution_and_linearity_vs_N_for_one_fit_type(energies, means, stds, r
 
 
 
-def plot_resolution_and_linearity_vs_E_for_all_fit_types(energies, means, stds, resolutions):
+def plot_resolution_and_linearity_vs_E_for_all_fit_types(energies, means, stds, resolutions, resolutions_peak):
     peaks = get_peaks_from_file()
     plt.figure(figsize=(15, 9))
     plt.suptitle('Resolution and Linearity for All Fit Types', fontsize=16)
 
-    plt.subplot(2, 3, 1)
+    plt.subplot(2, 3, 4)
     plt.plot(energies, resolutions['gamma'], 'o', ms=3, label='Gamma Resolution', color='blue')
     plt.plot(energies, resolutions['log_normal'], 'o', ms=3, label='Log-normal Resolution', color='yellow')
    # plt.plot(energies, resolutions['gaussian'], 'o', ms=3, label='Gaussian Resolution', color='red')
@@ -428,6 +455,12 @@ def plot_resolution_and_linearity_vs_E_for_all_fit_types(energies, means, stds, 
     plt.grid()
     plt.legend()
 
+    plt.subplot(2,3,1)
+    plt.plot(energies, resolutions_peak['gamma'], 'o', ms=3, label='Gamma Resolution Peak', color='blue')
+    plt.plot(energies, resolutions_peak['log_normal'], 'o', ms=3, label='Log-normal Resolution Peak', color='yellow')
+    #plt.plot(energies, resolutions_peak['gaussian'], 'o', ms=3, label='Gaussian Resolution Peak', color='red')
+    plt.plot(energies, resolutions_peak['gaussian_2_sigma'], 'o', ms=3, label='Gaussian 2 Sigma Resolution Peak', color='green')
+
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.savefig("/home/llr/ilc/oprea/data/resolution_and_linearity_vs_E.png")
     plt.show()
@@ -516,7 +549,7 @@ def plot_resolution_and_linearity_vs_N_for_all_fit_types(energies, means, stds, 
 
     plt.subplot(2, 3, 5)
     plt.plot(energies, peaks_list_gamma, 'o', ms=3, label='Gamma Linearity', color='blue')
-    plt.plot(energies, peaks_list_log_normal, 'o', ms=3, label='Log-Normal Linearity', color='yellow')
+    #plt.plot(energies, peaks_list_log_normal, 'o', ms=3, label='Log-Normal Linearity', color='yellow')
     #plt.plot(energies, peaks_list_gaussian, 'o', ms=3, label='Gaussian Linearity', color='red')
     plt.plot(energies, peaks_list_gaussian_2_sigma, 'o', ms=3, label='Gaussian 2 Sigma Linearity', color='green')
     plt.yscale('log')

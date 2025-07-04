@@ -8,11 +8,10 @@ from scipy.stats import norm as gaussian_dist
 import os
 import awkward as ak
 
-def fit_gamma(x, p0,p1,p2):
-    """Gamma distribution function."""
-# parameters: par[0] = normalization, par[1] = shape, par[2] = scale
-    par = [p0, p1, p2]
-    return par[0] * gamma_dist.pdf(x, par[1], scale=par[2])
+def fit_gamma(x, norm, shape, loc, scale):
+    """Gamma distribution function with location parameter."""
+    return norm * gamma_dist.pdf(x, shape, loc=loc, scale=scale)
+
 def fit_log_normal(x, p0,p1,p2):
     """Log-normal distribution function."""
     par= [p0, p1, p2]
@@ -142,6 +141,7 @@ def analyse_distributions(energies):
     #Fitting the distributions
         from scipy.optimize import curve_fit
         number_of_events, bin_edges= np.histogram(sum_E_arr, bins=50, density=False)
+        hist_peak_E = 0.5 * sum_E_arr[np.argmax(number_of_events)]
         bin_centers = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         start_E, end_E = interval_quantile(sum_E_arr, quant=0.9)
         mean_initial_E = np.mean(sum_E_arr[start_E:end_E])
@@ -150,8 +150,24 @@ def analyse_distributions(energies):
         mean_N_initial_N = np.mean(N_hits_arr[start_N:end_N])
         std_N_initial_N = np.std(N_hits_arr[start_N:end_N])
 
+        norm_guess = np.max(number_of_events)/15. if energy <= 30 else np.max(number_of_events)/10. 
+        #shape_guess = np.sqrt(np.std(sum_E_arr))
+        #loc_guess = np.mean(sum_E_arr) - 0.02
+        #scale_guess = shape_guess
+        shape_guess = 8
+        loc_guess = 1.8/30*energy
+        scale_guess =np.sqrt(np.std(sum_E_arr))/shape_guess
+        if energy == 0.15:
+            shape_guess = 5.0
+            loc_guess = 1e-5
+            scale_guess = 1.0
+        p0 = [norm_guess, shape_guess, loc_guess, scale_guess]
+
+        # Set bounds for parameters: norm, shape, loc, scale
+        bounds_lower = [0, 1e-5, loc_guess*0.1, 1e-5]   # norm>0, shape>0, loc>=0, scale>0
+        bounds_upper = [norm_guess*1.5,5*shape_guess, loc_guess*1.5, 5*scale_guess]  
         try:
-            popt_gamma_sum_E, _ = curve_fit(fit_gamma, bin_centers, number_of_events, p0=[np.max(number_of_events), 2.0, mean_initial_E], maxfev=10000)
+            popt_gamma_sum_E, _ = curve_fit(fit_gamma, bin_centers, number_of_events, p0=p0, bounds=(bounds_lower, bounds_upper), maxfev=10000)
             print(f"Gamma fit parameters for sum_E: {popt_gamma_sum_E}")
         except RuntimeError as e:
             print(f"Gamma fit failed for sum_E with error: {e}")
@@ -161,18 +177,26 @@ def analyse_distributions(energies):
         norm_lower = 0.8 * norm_gamma
         norm_upper = 1.2 * norm_gamma
 
-        # Bounds: norm, sigma, mu
+        shape_gamma = popt_gamma_sum_E[1]
+        shape_upper = 2.0 * shape_gamma
+
+        # Allow mu to vary freely (or set domain knowledge based bounds)
+        mu_lower = -np.inf
+        mu_upper = np.inf
+
         bounds = (
-            [norm_lower, 0, 0],
-            [norm_upper, np.inf, np.inf]
+            [norm_lower, 0, mu_lower],
+            [norm_upper, shape_upper, mu_upper]
         )
+
+
         try:
-            popt_log_normal_sum_E, _ = curve_fit(fit_log_normal, bin_centers, number_of_events, p0=[norm_gamma, std_initial_E, std_initial_E], bounds = bounds, maxfev=100000)
+            popt_log_normal_sum_E, _ = curve_fit(fit_log_normal, bin_centers, number_of_events, p0=[norm_gamma, std_initial_E, std_initial_E], bounds = bounds , maxfev=100000)
             print(f"Log-normal fit parameters for sum_E: {popt_log_normal_sum_E}")
         except RuntimeError as e:
             print(f"Log-normal fit failed for sum_E with error: {e}")
         try:
-            popt_gaussian_sum_E, _ = curve_fit(fit_gaussian, bin_centers, number_of_events, p0=[np.max(number_of_events), 2.0 * std_initial_E, mean_initial_E], maxfev=10000)
+            popt_gaussian_sum_E, _ = curve_fit(fit_gaussian, bin_centers, number_of_events, p0=[np.max(number_of_events), std_initial_E, mean_initial_E], maxfev=10000)
             print(f"Gaussian fit parameters for sum_E: {popt_gaussian_sum_E}")
         except RuntimeError as e:
             print(f"Gaussian fit failed for sum_E with error: {e}")
@@ -190,9 +214,10 @@ def analyse_distributions(energies):
 
         bins_for_low_E=np.arange(min(N_hits_arr), max(N_hits_arr) + 1.5) - 0.5
         number_of_events, bin_edges = np.histogram(N_hits_arr, bins=bins_for_low_E if len(bins_for_low_E)<50 else 50, density=False)
+        hist_peak_N = N_hits_arr[np.argmax(number_of_events)]
         bin_centers = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         try:
-            popt_gamma_N_hits, _ = curve_fit(fit_gamma, bin_centers, number_of_events, p0=[np.max(number_of_events), 5.0, mean_N_initial_N], maxfev=10000)
+            popt_gamma_N_hits, _ = curve_fit(fit_gamma, bin_centers, number_of_events, p0=[np.max(number_of_events), 5.0, 0.0, mean_N_initial_N], maxfev=10000)
             print(f"Gamma fit parameters for N_hits: {popt_gamma_N_hits}")
         except RuntimeError as e:
             print(f"Gamma fit failed for N_hits with error: {e}")
@@ -236,6 +261,8 @@ def analyse_distributions(energies):
         raw_data[energy] = {
             "sum_E_arr": sum_E_arr,
             "N_hits_arr": N_hits_arr,
+            "hist_peak_sum_E": hist_peak_E,
+            "hist_peak_N_hits": hist_peak_N
         }
     print (f"raw_data energies: {raw_data.keys()}")
 
@@ -257,7 +284,7 @@ def analyse_distributions(energies):
   #      print(f"Just checking something: Event 18: Hits: {hit_counts[18]}")
 
     return fit_results, raw_data
-energies = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0]
+energies = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
 
 
 #lol
@@ -286,9 +313,14 @@ def plot_fits(sum_E_arr, N_hits_arr, fit_results, energy):
     plt.hist(sum_E_arr, bins=50, color='blue', alpha=0.7)
     plt.plot(x_gauss_2_sigma_E, y_gauss_2_sigma_E, color='blue', label='Gaussian 2\u03C3 Fit')
     plt.plot(np.linspace(0, np.max(sum_E_arr), 100), fit_gamma(np.linspace(0, np.max(sum_E_arr), 100), *popt_gamma_sum_E), color='red', label='Gamma Fit')
-    plt.plot(np.linspace(0, np.max(sum_E_arr), 100), fit_log_normal(np.linspace(0, np.max(sum_E_arr), 100), *popt_log_normal_sum_E), color='green', label='Log-normal Fit')
+    print(f"popt_gamma_sum_E: {popt_gamma_sum_E}")
+    print(f"bounds_lower: {[0, 1e-5, np.min(sum_E_arr)*0.5, 1e-5]}")
+    print(f"bounds_upper: {[popt_gamma_sum_E[0]*2, 10, np.max(sum_E_arr)*2, np.max(sum_E_arr)*10]}")
+    #plt.plot(np.linspace(0, np.max(sum_E_arr), 100), fit_log_normal(np.linspace(0, np.max(sum_E_arr), 100), *popt_log_normal_sum_E), color='green', label='Log-normal Fit')
     plt.plot(np.linspace(0, np.max(sum_E_arr), 100), fit_gaussian(np.linspace(0, np.max(sum_E_arr), 100), *popt_gaussian_sum_E), color='orange', label='Gaussian Fit')
     plt.legend()
+    if energy >= 20:
+        plt.xlim(0.75 * np.mean(sum_E_arr), 1.25 * np.mean(sum_E_arr))
     plt.title("Sum Energy Distribution")
     plt.xlabel("Sum Energy")
     plt.ylabel("Number of Events")
@@ -301,16 +333,18 @@ def plot_fits(sum_E_arr, N_hits_arr, fit_results, energy):
     plt.plot(np.linspace(0, np.max(N_hits_arr), 100), fit_log_normal(np.linspace(0, np.max(N_hits_arr), 100), *popt_log_normal_N_hits), color='green', label='Log-normal Fit')
     plt.plot(np.linspace(0, np.max(N_hits_arr), 100), fit_gaussian(np.linspace(0, np.max(N_hits_arr), 100), *popt_gaussian_N_hits), color='orange', label='Gaussian Fit')
     plt.legend()
+    if energy >= 20:
+        plt.xlim(0.75 * np.mean(N_hits_arr), 1.25 * np.mean(N_hits_arr)) 
     plt.title("Number of Hits Distribution")
     plt.ylabel("Number of Events")
     plt.xlabel("Number of Hits")
-    
+    print
     plt.tight_layout(rect=[0, 0, 1, 0.95])
 
-   # plt.savefig(f"/home/llr/ilc/oprea/data/energy_plot_{energy}GeV.png")
+    #plt.savefig(f"/home/llr/ilc/oprea/data/energy_plot_{energy}GeV.png")
     plt.show()
 
-def find_peak(fit_results):
+def find_peak(fit_results, raw_data):
     peaks = {}
     for energy in fit_results.keys():
         params = fit_results[energy]
@@ -318,7 +352,7 @@ def find_peak(fit_results):
 
         # For sum_E fits
         x_min = 0
-        x_max = max(params["gaussian_sum_E"][2], params["log_normal_sum_E"][2], params["gamma_sum_E"][2]) * 2
+        x_max = max(params["gaussian_sum_E"][2], params["log_normal_sum_E"][2], params["gamma_sum_E"][3]) * 2
         x_sum_E = np.linspace(x_min, x_max, 1000)
         y_gamma = fit_gamma(x_sum_E, *params["gamma_sum_E"])
         y_logn = fit_log_normal(x_sum_E, *params["log_normal_sum_E"])
@@ -329,6 +363,7 @@ def find_peak(fit_results):
         peaks[energy]["log_normal_sum_E_peak"] = x_sum_E[np.argmax(y_logn)]
         peaks[energy]["gaussian_sum_E_peak"] = x_sum_E[np.argmax(y_gauss)]
         peaks[energy]["gaussian_2_sigma_sum_E_peak"] = x_sum_E[np.argmax(y_gauss2)]
+        peaks[energy]["rms90_sum_E_peak"] = raw_data[energy]["hist_peak_sum_E"]
 
         # For N_hits fits
         x_N_hits = np.linspace(0, 2 * params["gaussian_N_hits"][2], 1000)
@@ -336,17 +371,19 @@ def find_peak(fit_results):
         y_logn_N = fit_log_normal(x_N_hits, *params["log_normal_N_hits"])
         y_gauss_N = fit_gaussian(x_N_hits, *params["gaussian_N_hits"])
         y_gauss2_N = fit_gaussian(x_N_hits, *params["gaussian_2_sigma_N_hits"])
+        
 
         peaks[energy]["gamma_N_hits_peak"] = x_N_hits[np.argmax(y_gamma_N)]
         peaks[energy]["log_normal_N_hits_peak"] = x_N_hits[np.argmax(y_logn_N)]
         peaks[energy]["gaussian_N_hits_peak"] = x_N_hits[np.argmax(y_gauss_N)]
         peaks[energy]["gaussian_2_sigma_N_hits_peak"] = x_N_hits[np.argmax(y_gauss2_N)]
+        peaks[energy]["rms90_N_hits_peak"] = raw_data[energy]["hist_peak_N_hits"]
     
     return peaks
 
 
 def add_parameters_to_txt(fit_results, raw_data, filename="fit_parameters.txt"):
-    peaks = find_peak(fit_results)
+    peaks = find_peak(fit_results, raw_data)
     existing_energies = set()
     if os.path.exists(filename):
         with open(filename, 'r') as f:
@@ -363,10 +400,13 @@ def add_parameters_to_txt(fit_results, raw_data, filename="fit_parameters.txt"):
             if energy in existing_energies:
                 print(f"Energy {energy} GeV already exists in file. Skipping.")
                 continue
-            print(f"Appending data for Energy {energy} GeV.")
+            params_gamma_sum_E = np.concatenate([fit_results[energy]["gamma_sum_E"][:2], fit_results[energy]["gamma_sum_E"][3:]])
+            params_gamma_N_hits = np.concatenate([fit_results[energy]["gamma_N_hits"][:2], fit_results[energy]["gamma_N_hits"][3:]])
+            print(f"Appending data for Energy {energy} GeV.\n")
+
             f.write(f"Energy: {energy} GeV\n")
             f.write("Sum_E Fit Parameters:\n")
-            f.write(f"Gamma_E_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['gamma_sum_E'])}\n")
+            f.write(f"Gamma_E_{energy}: {', '.join(f'{x}' for x in params_gamma_sum_E)}\n")
             f.write(f"Peak of gamma_E dist at {energy} GeV: {peaks[energy]['gamma_sum_E_peak']}\n")
             f.write(f"Log-normal_E_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['log_normal_sum_E'])}\n")
             f.write(f"Peak of ln_E dist at {energy} GeV: {peaks[energy]['log_normal_sum_E_peak']}\n")
@@ -375,8 +415,9 @@ def add_parameters_to_txt(fit_results, raw_data, filename="fit_parameters.txt"):
             f.write(f"Gaussian_2_sigma_E_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['gaussian_2_sigma_sum_E'])}\n")
             f.write(f"Peak of gaussian 2 sigma_E dist at {energy} GeV: {peaks[energy]['gaussian_2_sigma_sum_E_peak']}\n")
             f.write(f"RMS90_sum_E_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['rms90_sum_E'])}\n")
+            f.write(f"Peak of RMS90_sum_E dist at {energy} GeV: {peaks[energy]['rms90_sum_E_peak']}\n")
             f.write("N_hits Fit Parameters:\n")
-            f.write(f"Gamma_N_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['gamma_N_hits'])}\n")
+            f.write(f"Gamma_N_{energy}: {', '.join(f'{x}' for x in params_gamma_N_hits)}\n")
             f.write(f"Peak of gamma_N dist at {energy} GeV: {peaks[energy]['gamma_N_hits_peak']}\n")
             f.write(f"Log-normal_N_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['log_normal_N_hits'])}\n")
             f.write(f"Peak of ln_N dist at {energy} GeV: {peaks[energy]['log_normal_N_hits_peak']}\n")
@@ -385,17 +426,22 @@ def add_parameters_to_txt(fit_results, raw_data, filename="fit_parameters.txt"):
             f.write(f"Gaussian_2_sigma_N_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['gaussian_2_sigma_N_hits'])}\n")
             f.write(f"Peak of gaussian 2 sigma_N dist at {energy} GeV: {peaks[energy]['gaussian_2_sigma_N_hits_peak']}\n")
             f.write(f"RMS90_N_hits_{energy}: {', '.join(f'{x}' for x in fit_results[energy]['rms90_N_hits'])}\n")
+            f.write(f"Peak of RMS90_N_hits dist at {energy} GeV: {peaks[energy]['rms90_N_hits_peak']}\n")
             f.write("\n")
             f.write(f"Raw Data for Energy {energy} GeV:\n")
             f.write(f"Sum_E_{energy} Array: {raw_data[energy]['sum_E_arr']}\n")
             f.write(f"N_hits_{energy} Array: {raw_data[energy]['N_hits_arr']}\n")
+            # Write the peaks of the bins for sum_E and N_hits arrays
+            sum_E_peak_bin = rms90(raw_data[energy]['sum_E_arr'])[0]
+            N_hits_peak_bin = rms90(raw_data[energy]['N_hits_arr'])[0]
+            f.write(f"Sum_E_{energy} Bin Peak: {sum_E_peak_bin}\n")
+            f.write(f"N_hits_{energy} Bin Peak: {N_hits_peak_bin}\n")
             f.write("\n")
-
     print("Done updating fit_parameters.txt.")
 
     #add the parameters into a txt, then read from the txt into the resolution_and_linearity.py
 
-energies = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0]
+energies = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
 
 # Analyze all distributions at given energies
 fit_results, raw_data = analyse_distributions(energies)
@@ -409,14 +455,30 @@ add_parameters_to_txt(
 # Save all fit parameters and relevant data to a text file
 print("Saving to:", os.path.abspath("fit_parameters.txt")) #Seeing where the file is saved
 
-# Plot fits for a specific energy (e.g., 0.05 GeV)
-energy_to_plot = 0.05  # Change this to the desired energy for plotting
+# Plot fits for a specific energy (e.g., 2 GeV)
+#for energy_to_plot in energies:  # Change this to the desired energy for plotting
+energy_to_plot = 0.15  # Change this to the desired energy for plotting
 plot_fits(
     raw_data[energy_to_plot]["sum_E_arr"],
     raw_data[energy_to_plot]["N_hits_arr"],
     fit_results,
     energy_to_plot
-)
+    )
+
+
+#scoate din write cele legate de sum_E log-normal si gaussian, ca nu le mai folosesti
+#fa rms90 cu factorul de scalare, ca sa arati ca e proportional gaussian
+#printeaza cacaturile noi in resolution_and_linearity.py
+#fa un fisier python nou cu combine hits, sa nu schimbi asta
+#din el, printeaza intr-un fisier txt parametrii pentru combine hits ca sa folosesti codul
+#din resolution_and_linearity.py
+#gaseste minimul plotului combine hits la layer si dupa si la cells (asa incearca si sa gasesti combinarea ideala)
+#si incearca  vs N_hits de dinainte de peak, si  gaseste un interval bun, astfel gasesti mip-ul, si astfel 
+#si threshold-ul 
+#dupa ce adaugi threshold-ul, mai faci din nou la noul plot (cu <threshold) resolutia si linearitatea
+#metoda nouaaaa
+#scan de parametrii cu metoda noua + codurile pe care deja o sa le ai
+#publicare rezultate
 
 
 
