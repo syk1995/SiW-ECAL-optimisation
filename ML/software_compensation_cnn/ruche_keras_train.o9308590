@@ -1,0 +1,404 @@
+py-spy> Sampling process 100 times a second. Press Control-C to exit.
+
+py-spy> 1.06s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.15s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:38:58.079750: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2025-04-25 17:41:04.651891: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2025-04-25 17:41:04.701358: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2025-04-25 17:41:04.974178: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:86:00.0 name: Tesla V100-PCIE-32GB computeCapability: 7.0
+coreClock: 1.38GHz coreCount: 80 deviceMemorySize: 31.74GiB deviceMemoryBandwidth: 836.37GiB/s
+2025-04-25 17:41:04.974331: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+py-spy> 1.01s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.49s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.82s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.20s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.89s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.15s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.48s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.73s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.05s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.35s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.61s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.96s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.18s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.40s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.68s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.87s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.19s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.50s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.89s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.68s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.08s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.45s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.73s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 9.09s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:41:33.295308: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2025-04-25 17:41:33.307510: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+py-spy> 9.12s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.12s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.56s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.88s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 11.19s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 11.45s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 11.87s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 12.27s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 12.37s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 12.69s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 13.15s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 13.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 13.69s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 14.20s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 14.44s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 14.79s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 15.19s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 15.49s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 15.62s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 15.99s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 16.23s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 16.61s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 16.83s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 17.04s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 17.47s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 17.86s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 18.08s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 18.29s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 18.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 19.02s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 19.40s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 19.80s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 20.28s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:42:07.326615: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+py-spy> 20.63s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:42:08.339546: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+py-spy> 20.80s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 21.31s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 21.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 21.93s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 22.34s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 22.80s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 23.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 23.38s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 23.64s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 23.96s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 24.43s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 24.83s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 24.96s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 25.23s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 25.65s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 26.06s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 26.53s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 26.95s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 27.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 27.60s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 27.88s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 28.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 28.49s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 28.91s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 29.10s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 29.43s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 29.75s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 30.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 30.51s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 30.85s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.03s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.49s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.75s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.99s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 32.35s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 32.68s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 33.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 33.34s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 33.72s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 34.01s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 34.41s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 34.76s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 35.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 35.40s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 35.70s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 36.01s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 36.40s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 36.74s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 37.04s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 37.43s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 37.76s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 38.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 38.26s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 38.51s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 38.83s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.27s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.63s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.87s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 40.09s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 40.44s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 40.73s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 41.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 41.56s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 41.83s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 42.28s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 42.57s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 42.90s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 43.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 43.60s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 43.95s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 44.13s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 44.41s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 44.76s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 45.00s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 45.28s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 45.66s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 45.97s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.64s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.00s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.45s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.78s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:43:32.853807: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+py-spy> 47.88s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 48.59s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:43:35.373366: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+py-spy> 47.66s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.97s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 48.30s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 48.43s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 48.79s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 49.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 49.61s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 49.90s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 50.30s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 50.65s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 51.04s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 51.46s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 51.80s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 52.03s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 52.38s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 52.50s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 52.77s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 53.23s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 53.71s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 54.10s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 54.53s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 54.84s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 55.18s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 55.52s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 55.97s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 56.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 56.65s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 56.82s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 57.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 57.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:44:05.396844: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2025-04-25 17:44:05.510454: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
+py-spy> 55.29s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.41s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:44:07.319236: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-04-25 17:44:07.365883: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2025-04-25 17:44:07.398344: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:86:00.0 name: Tesla V100-PCIE-32GB computeCapability: 7.0
+coreClock: 1.38GHz coreCount: 80 deviceMemorySize: 31.74GiB deviceMemoryBandwidth: 836.37GiB/s
+2025-04-25 17:44:07.398458: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2025-04-25 17:44:07.408205: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2025-04-25 17:44:07.408278: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2025-04-25 17:44:07.408324: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2025-04-25 17:44:07.408368: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2025-04-25 17:44:07.408412: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2025-04-25 17:44:07.411609: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2025-04-25 17:44:07.411664: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2025-04-25 17:44:07.443536: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
+2025-04-25 17:44:07.447183: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+py-spy> 46.63s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 45.95s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 47.06s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.54s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.40s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.52s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.31s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 46.49s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 44.71s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 44.01s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 43.05s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 42.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 41.94s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 41.25s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 40.77s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 40.26s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.95s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 39.18s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 38.51s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 37.70s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 36.74s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 35.87s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 35.01s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 34.93s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 34.24s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 33.82s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 32.97s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.82s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.30s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 31.27s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 30.47s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 29.62s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 28.75s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 27.98s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 26.88s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 25.82s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 25.05s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:44:46.903257: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
+2025-04-25 17:44:46.903365: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 
+2025-04-25 17:44:46.903423: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N 
+2025-04-25 17:44:46.986097: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30128 MB memory) -> physical GPU (device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:86:00.0, compute capability: 7.0)
+py-spy> 24.06s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 21.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 20.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 18.03s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 17.14s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 16.94s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 13.60s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.18s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.17s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:45:21.084569: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2025-04-25 17:45:21.120946: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2100000000 Hz
+2025-04-25 17:45:27.228671: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+py-spy> 1.17s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.77s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.34s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.85s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.34s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.91s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.48s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.10s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.55s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.19s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.44s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 6.85s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.28s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.76s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.31s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.72s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 9.15s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 9.53s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 9.90s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.91s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.99s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 10.12s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 9.29s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 8.08s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 7.22s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 5.91s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 4.76s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.84s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.66s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.54s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.46s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:46:34.472639: W tensorflow/core/kernels/gpu_utils.cc:49] Failed to allocate memory for convolution redzone checking; skipping this check. This is benign and only means that we won't check cudnn for out-of-bounds reads and writes. This message will only be printed once.
+2025-04-25 17:46:34.786754: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+py-spy> 1.75s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.36s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.87s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.96s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.62s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+2025-04-25 17:46:47.011904: W tensorflow/stream_executor/gpu/asm_compiler.cc:63] Running ptxas --version returned 256
+2025-04-25 17:46:47.121679: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] Internal: ptxas exited with non-zero error code 256, output: 
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+py-spy> 1.86s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.93s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.94s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.58s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+Start Time: 1745595664.65 s
+Available GPU devices:
+PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')
+For train.
+Model: "model"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+conv3d_input (InputLayer)       [(None, 50, 50, 50,  0                                            
+__________________________________________________________________________________________________
+conv3d (Conv3D)                 (None, 46, 46, 46, 6 8064        conv3d_input[0][0]               
+__________________________________________________________________________________________________
+conv3d_1 (Conv3D)               (None, 44, 44, 44, 3 55328       conv3d[0][0]                     
+__________________________________________________________________________________________________
+max_pooling3d (MaxPooling3D)    (None, 22, 22, 22, 3 0           conv3d_1[0][0]                   
+__________________________________________________________________________________________________
+conv3d_2 (Conv3D)               (None, 20, 20, 20, 3 27680       max_pooling3d[0][0]              
+__________________________________________________________________________________________________
+conv3d_3 (Conv3D)               (None, 18, 18, 18, 3 27680       conv3d_2[0][0]                   
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 18, 18, 18, 3 128         conv3d_3[0][0]                   
+__________________________________________________________________________________________________
+max_pooling3d_1 (MaxPooling3D)  (None, 9, 9, 9, 32)  0           batch_normalization[0][0]        
+__________________________________________________________________________________________________
+conv3d_4 (Conv3D)               (None, 7, 7, 7, 32)  27680       max_pooling3d_1[0][0]            
+__________________________________________________________________________________________________
+conv3d_5 (Conv3D)               (None, 5, 5, 5, 6)   5190        conv3d_4[0][0]                   
+__________________________________________________________________________________________________
+max_pooling3d_2 (MaxPooling3D)  (None, 2, 2, 2, 6)   0           conv3d_5[0][0]                   
+__________________________________________________________________________________________________
+flatten (Flatten)               (None, 48)           0           max_pooling3d_2[0][0]            
+__________________________________________________________________________________________________
+input_1 (InputLayer)            [(None, 1)]          0                                            
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 49)           0           flatten[0][0]                    
+                                                                 input_1[0][0]                    
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 512)          25600       concatenate[0][0]                
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 128)          65664       dense[0][0]                      
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 32)           4128        dense_1[0][0]                    
+__________________________________________________________________________________________________
+dropout (Dropout)               (None, 32)           0           dense_2[0][0]                    
+__________________________________________________________________________________________________
+fem_output (Dense)              (None, 1)            33          dropout[0][0]                    
+==================================================================================================
+Total params: 247,175
+Trainable params: 247,111
+Non-trainable params: 64
+__________________________________________________________________________________________________
+Compile Time: 225.96 s
+Split Index: 7000
+Load Time: 0.20s
+ 1/28 [>.............................] - ETA: 44:24 - loss: 0.0251 - mape: 25.2283 - mse: 0.0251 - mae: 0.1228 2/28 [=>............................] - ETA: 15:18 - loss: 0.0240 - mape: 23.3225 - mse: 0.0240 - mae: 0.1183 3/28 [==>...........................] - ETA: 16:19 - loss: 0.0226 - mape: 22.0849 - mse: 0.0226 - mae: 0.1138 4/28 [===>..........................] - ETA: 16:12 - loss: 0.0221 - mape: 21.9899 - mse: 0.0221 - mae: 0.1129 5/28 [====>.........................] - ETA: 15:27 - loss: 0.0214 - mape: 81410.2482 - mse: 0.0214 - mae: 0.1110 6/28 [=====>........................] - ETA: 14:48 - loss: 0.0207 - mape: 124364.9308 - mse: 0.0207 - mae: 0.1091 7/28 [======>.......................] - ETA: 13:58 - loss: 0.0201 - mape: 148125.9183 - mse: 0.0201 - mae: 0.1072 8/28 [=======>......................] - ETA: 13:14 - loss: 0.0196 - mape: 161404.8035 - mse: 0.0196 - mae: 0.1055 9/28 [========>.....................] - ETA: 12:34 - loss: 0.0192 - mape: 193817.0580 - mse: 0.0192 - mae: 0.104410/28 [=========>....................] - ETA: 11:52 - loss: 0.0190 - mape: 215215.9460 - mse: 0.0190 - mae: 0.103611/28 [==========>...................] - ETA: 11:09 - loss: 0.0188 - mape: 246789.2691 - mse: 0.0188 - mae: 0.103012/28 [===========>..................] - ETA: 10:29 - loss: 0.0185 - mape: 269194.0722 - mse: 0.0185 - mae: 0.102413/28 [============>.................] - ETA: 9:48 - loss: 0.0184 - mape: 285100.9536 - mse: 0.0184 - mae: 0.1019 14/28 [==============>...............] - ETA: 9:08 - loss: 0.0182 - mape: 307189.5909 - mse: 0.0182 - mae: 0.101515/28 [===============>..............] - ETA: 8:27 - loss: 0.0180 - mape: 323691.6181 - mse: 0.0180 - mae: 0.101016/28 [================>.............] - ETA: 7:48 - loss: 0.0179 - mape: 335964.1088 - mse: 0.0179 - mae: 0.100617/28 [=================>............] - ETA: 7:08 - loss: 0.0177 - mape: 344993.3469 - mse: 0.0177 - mae: 0.100218/28 [==================>...........] - ETA: 6:29 - loss: 0.0176 - mape: 351508.6905 - mse: 0.0176 - mae: 0.099819/28 [===================>..........] - ETA: 5:49 - loss: 0.0175 - mape: 361832.1081 - mse: 0.0175 - mae: 0.099520/28 [====================>.........] - ETA: 5:10 - loss: 0.0174 - mape: 369754.0902 - mse: 0.0174 - mae: 0.099121/28 [=====================>........] - ETA: 4:32 - loss: 0.0172 - mape: 375741.8999 - mse: 0.0172 - mae: 0.098922/28 [======================>.......] - ETA: 3:53 - loss: 0.0171 - mape: 380161.6416 - mse: 0.0171 - mae: 0.098623/28 [=======================>......] - ETA: 3:14 - loss: 0.0171 - mape: 387395.9833 - mse: 0.0171 - mae: 0.098424/28 [========================>.....] - ETA: 2:36 - loss: 0.0170 - mape: 393078.6129 - mse: 0.0170 - mae: 0.098125/28 [=========================>....] - ETA: 1:57 - loss: 0.0169 - mape: 397468.6046 - mse: 0.0169 - mae: 0.097926/28 [==========================>...] - ETA: 1:18 - loss: 0.0168 - mape: 400777.0946 - mse: 0.0168 - mae: 0.0976py-spy> 1.02s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.29s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.70s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.07s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.24s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.19s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.27s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+27/28 [===========================>..] - ETA: 38s - loss: 0.0167 - mape: 406634.8619 - mse: 0.0167 - mae: 0.0973 28/28 [==============================] - ETA: 0s - loss: 0.0166 - mape: 411344.1994 - mse: 0.0166 - mae: 0.0971 py-spy> 1.05s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.03s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.72s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.11s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.02s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.46s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.09s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 3.41s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.30s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+28/28 [==============================] - 1636s 57s/step - loss: 0.0165 - mape: 415728.7551 - mse: 0.0165 - mae: 0.0969 - val_loss: 0.0207 - val_mape: 510791.8438 - val_mse: 0.0207 - val_mae: 0.1091
+py-spy> 1.02s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.08s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.99s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.60s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.04s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.46s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.48s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.46s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.02s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 2.83s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+py-spy> 1.34s behind in sampling, results may be inaccurate. Try reducing the sampling rate
+Fit Time: 1692.88s
+Model saved as: /gpfs/users/xiax/SoftwareCompensation/model/mse_ssh_sigmoid_1epoch_0_900.h5
+Save Time: 2.03 s
+
+py-spy> Stopped sampling because process exited
+py-spy> Wrote flamegraph data to '/gpfs/users/xiax/SoftwareCompensation/result/pyspy_train_10.svg'. Samples: 195132 Errors: 11884
