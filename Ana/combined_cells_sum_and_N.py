@@ -278,11 +278,11 @@ def plot_fits(sum_E_arr, N_hits_arr, energy, calolayers, position_z, all_hit_ene
     plt.title("Position Z vs Index Z")
 
     plt.subplot(3,3,4)
-    plt.hist(all_hit_energies*1000000, bins=1000, color='purple', alpha=0.7)
+    plt.hist(all_hit_energies*100000, bins=1000, color='purple', alpha=0.7)
     plt.title("Total Energy per Event")
-    plt.xlim(0,60000)
+    plt.xlim(0,6000)
     plt.ylim(0,150000)
-    plt.xlabel("Total Energy (keV)")
+    plt.xlabel("Total Energy (MeV)")
     plt.ylabel("Number of Events")
 
 
@@ -316,27 +316,62 @@ def plot_fits(sum_E_arr, N_hits_arr, energy, calolayers, position_z, all_hit_ene
     #plt.show()
 
 def write_root_file(raw_data, raw_data_gamma, filename):
+    """
+    ROOT file structure written by this function:
+
+    root_file.root
+    ├── mu-/
+    │   ├── energy       (Tree: 1 branch, energy labels, one per event)
+    │   ├── sum_E        (Tree: 1 branch, sum_E per event)
+    │   ├── N_hits       (Tree: 1 branch, N_hits per event)
+    │   ├── hit_energy   (Tree: 1 branch, one entry per hit)
+    │   ├── position_z   (Tree: 1 branch, one entry per hit)
+    │   └── superlayer   (Tree: 1 branch, one entry per hit)
+    └── gamma/
+        ├── energy
+        ├── sum_E
+        ├── N_hits
+        ├── hit_energy
+        ├── position_z
+        └── superlayer
+    """
+
     with uproot.recreate(filename) as f:
-        f.mkdir("mu-")
-        f.mkdir("gamma")
-        for energy, data in raw_data.items():
-            f["mu-"].mkdir(f"energy_{energy}")
-            f[f"mu-"][f"energy_{energy}"] = {
-                "sum_E_arr": data["sum_E_arr"],
-                "N_hits_arr": data["N_hits_arr"],
-                "all_hit_energies": data["all_hit_energies"],
-                "superlayers": data["superlayers"],
-                "position_z": data["position_z"],
-                "Hit_energy_list": data["e_list"]
-            }
-        for energy, data in raw_data_gamma.items():
-            f["gamma"].mkdir(f"energy_{energy}")
-            f[f"gamma"][f"energy_{energy}"] = {
-                "sum_E_arr": data["sum_E_arr"],
-                "N_hits_arr": data["N_hits_arr"],
-                "Hit_energy_list": data["e_list"]
-            }
-    print(f"Data written to {filename}")
+        for particle_type, dataset in {"mu-": raw_data, "gamma": raw_data_gamma}.items():
+            f.mkdir(particle_type)
+
+            # Collect per-event arrays
+            all_sum_E = []
+            all_N_hits = []
+            all_energy_labels_events = []
+
+            for energy, data in dataset.items():
+                n_events = len(data["sum_E_arr"])
+                all_sum_E.extend(data["sum_E_arr"])
+                all_N_hits.extend(data["N_hits_arr"])
+                all_energy_labels_events.extend([energy] * n_events)
+
+            # Write separate trees for event-level quantities
+            f[f"{particle_type}/energy"] = {"energy": np.array(all_energy_labels_events, dtype="float32")}
+            f[f"{particle_type}/sum_E"] = {"sum_E": np.array(all_sum_E, dtype="float32")}
+            f[f"{particle_type}/N_hits"] = {"N_hits": np.array(all_N_hits, dtype="int32")}
+
+            # Collect per-hit arrays
+            hit_energies = []
+            positions_z = []
+            superlayers = []
+
+            for energy, data in dataset.items():
+                hit_energies.extend(data["all_hit_energies"])
+                positions_z.extend(data["position_z"])
+                superlayers.extend(data["superlayers"])
+
+            # Write separate trees for hit-level quantities
+            f[f"{particle_type}/hit_energy"] = {"hit_energy": np.array(hit_energies, dtype="float32")}
+            f[f"{particle_type}/position_z"] = {"position_z": np.array(positions_z, dtype="float32")}
+            f[f"{particle_type}/superlayer"] = {"superlayer": np.array(superlayers, dtype="int32")}
+            print(f"Written {particle_type} data to {filename}")
+
 energies1 = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
 energies = [200.0]
 
