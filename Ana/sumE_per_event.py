@@ -36,7 +36,8 @@ def error_correction_factor(layer):
 
 def get_file(input_energy):
     import uproot
-    path = "/grid_mnt/vol_home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/gamma/MC/"
+    path = "/mnt/d/gamma/MC/"
+    #path = "/grid_mnt/vol_home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/gamma/MC/"
     filename = f"{path}{float(input_energy)}GeV.root"
     file = uproot.open(filename)
     print(f"Opened file: {filename}")
