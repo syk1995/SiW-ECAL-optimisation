@@ -1,0 +1,9 @@
+ECAL digitization
+1. Combine cells in the ECAL
+2. Add threshold to the combined cells
+3. Timie info?
+
+1. Combine cells in the ECAL
+    quick use: just source combine.sh, and parameters in it are quite clear. This script will be also further modified for submitting jobs to the batch system.
+    combine_cells.py: the script run by combine.sh, which will combine cells in the ECAL.
+    combine_cells.ipynb: the notebook version of combine_cells.py, mainly for debugging and testing, doesnt guarantee the exact same as combine_cells.py.

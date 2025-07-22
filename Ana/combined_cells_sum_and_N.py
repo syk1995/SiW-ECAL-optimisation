@@ -39,7 +39,7 @@ def error_correction_factor(layer):
 
 def get_file(input_energy):
     import uproot
-    path = "/mnt/d/mu-/MC/"
+    path = "/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/mu-/MC/"
     filename = f"{path}{float(input_energy)}GeV.root"
     file = uproot.open(filename)
     print(f"Opened file: {filename}")
@@ -47,7 +47,7 @@ def get_file(input_energy):
 
 def get_file_gamma(input_energy):
     import uproot
-    path = "/mnt/d/gamma/MC/"
+    path = "/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/gamma/MC/"
     filename = f"{path}{float(input_energy)}GeV.root"
     file = uproot.open(filename)
     print(f"Opened file: {filename}")
@@ -311,7 +311,7 @@ def plot_fits(sum_E_arr, N_hits_arr, energy, calolayers, position_z, all_hit_ene
     plt.title("Sum Energy Distribution for Gamma")
     plt.xlabel("Sum Energy (MeV)")
     plt.ylabel("Number of Events")
-    plt.savefig(f"/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") if not os.path.exists("/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") else None
+    #plt.savefig(f"/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") if not os.path.exists("/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") else None
     #change the path to the one needed in the server
     #plt.show()
 
@@ -393,6 +393,6 @@ for energy_to_plot in energies1:
         raw_data_gamma[energy_to_plot]["N_hits_arr"],
         raw_data_gamma[energy_to_plot]["sum_E_arr"]
     )
-    write_root_file(raw_data, raw_data_gamma, f"/mnt/d/data_roots/combined_cells_sum_and_N_mu-_{energies[0]}GeV_gamma_{energy_to_plot}GeV.root")
+    write_root_file(raw_data, raw_data_gamma, f"/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/combined_cells_sum_and_N_mu-_{energies[0]}GeV_gamma_{energy_to_plot}GeV.root")
     #change the path to the one needed in the server
 
