@@ -43,6 +43,20 @@ def get_file(input_energy):
     print(f"Opened file: {filename}")
     return file
 
+def read_file_for_geometry_2(input_energy, particle_type):
+    import uproot
+    path = "/mnt/d/data_roots/combined_cells_sum_and_N_mu-_200.0GeV_gamma_" 
+    filename = f"{path}{float(input_energy)}GeV.root"
+    with uproot.open(filename) as file:
+        # Navigate to the appropriate group (mu- or gamma)
+        group = file[particle_type]
+
+        # Read sum_E and N_hits
+        sum_E = group["sum_E"].arrays(library="np")["sum_E"]
+        N_hits = group["N_hits"].arrays(library="np")["N_hits"]
+
+    return sum_E, N_hits
+
 def decode_volid(volid):
     volid = int(volid)
     calolayer = volid & 0x7F                 # bits 0–6
@@ -104,19 +118,24 @@ def fit90(x):
 #code from /home/llr/ilc/shi/code/Tool
 
 
-def analyse_distributions(energies):
+def analyse_distributions(energies, geometry = None, particle_type = None):
     fit_results = {}
     raw_data = {}
     for energy in energies:
-        file = get_file(energy)
-        tree = file["events"]
-        print(f"Processing energy: {energy} GeV")
-
-        hit_energy = tree["simplecaloRO.energy"].array(library = 'ak')
-        hit_cellID = tree["simplecaloRO.cellID"].array(library = 'ak')
-
-        sum_E = ak.sum(hit_energy, axis=1)
-        N_hits = ak.num(hit_energy, axis=1)
+        hit_cellID = None
+        if geometry is None:
+            file = get_file(energy)
+            tree = file["events"]
+            print(f"Processing energy: {energy} GeV")
+            hit_energy = tree["simplecaloRO.energy"].array(library = 'ak')
+            hit_cellID = tree["simplecaloRO.cellID"].array(library = 'ak')
+            sum_E = ak.sum(hit_energy, axis=1)
+            N_hits = ak.num(hit_energy, axis=1)
+        elif geometry == "80_layers_SiW-ECAL":
+            if particle_type == "mu-":
+                sum_E, N_hits = read_file_for_geometry_2(energy, particle_type = "mu-")
+            elif particle_type == "gamma":
+                sum_E, N_hits = read_file_for_geometry_2(energy, particle_type = "gamma")
 
         print(f"Number of events: {len(sum_E)}")
         print(f"Mean energy: {np.mean(sum_E):.4f} GeV")
@@ -197,7 +216,7 @@ def analyse_distributions(energies):
         except RuntimeError as e:
             print(f"Log-normal fit failed for sum_E with error: {e}")
         try:
-            popt_gaussian_sum_E, _ = curve_fit(fit_gaussian, bin_centers, number_of_events, p0=[np.max(number_of_events), std_initial_E, mean_initial_E], maxfev=10000)
+            popt_gaussian_sum_E, _ = curve_fit(fit_gaussian, bin_centers, number_of_events, p0=[norm_gamma, std_initial_E, mean_initial_E], maxfev=10000)
             print(f"Gaussian fit parameters for sum_E: {popt_gaussian_sum_E}")
         except RuntimeError as e:
             print(f"Gaussian fit failed for sum_E with error: {e}")
@@ -443,9 +462,10 @@ def add_parameters_to_txt(fit_results, raw_data, filename="fit_parameters.txt"):
     #add the parameters into a txt, then read from the txt into the resolution_and_linearity.py
 
 energies = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
+energies1 = [0.15]
 
 # Analyze all distributions at given energies
-fit_results, raw_data = analyse_distributions(energies)
+fit_results, raw_data = analyse_distributions(energies1, geometry = "80_layers_SiW-ECAL", particle_type = "gamma")
 
 add_parameters_to_txt(
     fit_results,
@@ -467,15 +487,7 @@ plot_fits(
     )
 
 
-#scoate din write cele legate de sum_E log-normal si gaussian, ca nu le mai folosesti
-#fa rms90 cu factorul de scalare, ca sa arati ca e proportional gaussian
-#printeaza cacaturile noi in resolution_and_linearity.py
-#fa un fisier python nou cu combine hits, sa nu schimbi asta
-#din el, printeaza intr-un fisier txt parametrii pentru combine hits ca sa folosesti codul
-#din resolution_and_linearity.py
-#gaseste minimul plotului combine hits la layer si dupa si la cells (asa incearca si sa gasesti combinarea ideala)
-#si incearca  vs N_hits de dinainte de peak, si  gaseste un interval bun, astfel gasesti mip-ul, si astfel 
-#si threshold-ul 
+
 #dupa ce adaugi threshold-ul, mai faci din nou la noul plot (cu <threshold) resolutia si linearitatea
 #metoda nouaaaa
 #scan de parametrii cu metoda noua + codurile pe care deja o sa le ai
@@ -494,8 +506,6 @@ plot_fits(
 # so if a fit fails, it will print an error message but continue processing other fits.
 
 
-
-
-#cOMBINE THE HITS (FOR SUM E AND NUMEBER OF HITS)
-#save the comine hits method to a root file
 #threshold
+
+#a mers gaussian-ul, acum incearca sa rezolvi gaussian 2 sigma

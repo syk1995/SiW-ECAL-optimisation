@@ -301,7 +301,7 @@ def plot_fits(sum_E_arr, N_hits_arr, energy, calolayers, position_z, all_hit_ene
     plt.xlabel("Hit Energy (MeV)")
 
     plt.subplot(3,3,7)
-    plt.hist(N_hits_arr_gamma, bins='auto', color='cyan', alpha=0.7)
+    plt.hist(N_hits_arr_gamma, bins="auto", color='cyan', alpha=0.7)
     plt.title("Number of Hits Distribution for Gamma")
     plt.xlabel("Number of Hits")
     plt.ylabel("Number of Events")
@@ -311,11 +311,11 @@ def plot_fits(sum_E_arr, N_hits_arr, energy, calolayers, position_z, all_hit_ene
     plt.title("Sum Energy Distribution for Gamma")
     plt.xlabel("Sum Energy (MeV)")
     plt.ylabel("Number of Events")
-    plt.savefig(f"/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") if not os.path.exists("/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") else None
+    #plt.savefig(f"/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") if not os.path.exists("/mnt/d/plots/combined_cells_sum_and_N_mu-_{energy}GeV_gamma_{energy_gamma}GeV.png") else None
     #change the path to the one needed in the server
-    #plt.show()
+    plt.show()
 
-def write_root_file(raw_data, raw_data_gamma, filename):
+def write_root_file(input_energy_mu, input_energy_gamma, raw_data, raw_data_gamma, filename):
     """
     ROOT file structure written by this function:
 
@@ -336,63 +336,121 @@ def write_root_file(raw_data, raw_data_gamma, filename):
         └── superlayer
     """
 
-    with uproot.recreate(filename) as f:
-        for particle_type, dataset in {"mu-": raw_data, "gamma": raw_data_gamma}.items():
-            f.mkdir(particle_type)
+    for i in range(len(input_energy_mu)):
+        for j in range(len(input_energy_gamma)):
+            with uproot.recreate(filename) as f:
+                f.mkdir("mu-")
+                f.mkdir("gamma")
+                all_sum_E_mu = []
+                all_N_hits_mu = []
+                all_energy_labels_events_mu = []
+                hit_energies_mu = []
+                hit_energies_for_one_event_mu = []
+
+                all_sum_E_gamma = []
+                all_N_hits_gamma = []
+                all_energy_labels_events_gamma = []
+                hit_energies_gamma = []
+                hit_energies_for_one_event_gamma = []
+
+                filename = f"/mnt/d/data_roots/version3_combined_cells_sum_and_N_mu-_{input_energy_mu[i]}GeV_gamma_{input_energy_gamma[j]}GeV.root"
+                hit_energies_for_one_event_gamma.extend(raw_data_gamma[input_energy_gamma[j]]["e_list"])
+                hit_energies_for_one_event_mu.extend(raw_data[input_energy_mu[i]]["e_list"])
+                all_sum_E_mu.extend(raw_data[input_energy_mu[i]]["sum_E_arr"])
+                all_N_hits_mu.extend(raw_data[input_energy_mu[i]]["N_hits_arr"])
+                all_energy_labels_events_mu.extend([input_energy_mu[i]] * len(raw_data[input_energy_mu[i]]["sum_E_arr"]))
+                all_sum_E_gamma.extend(raw_data_gamma[input_energy_gamma[j]]["sum_E_arr"])
+                all_N_hits_gamma.extend(raw_data_gamma[input_energy_gamma[j]]["N_hits_arr"])
+                all_energy_labels_events_gamma.extend([input_energy_gamma[j]] * len(raw_data_gamma[input_energy_gamma[j]]["sum_E_arr"]))
+                hit_energies_mu.extend(raw_data[input_energy_mu[i]]["all_hit_energies"])
+                hit_energies_gamma.extend(raw_data_gamma[input_energy_gamma[j]]["all_hit_energies"])
+
+                f[f"mu-/energy"] = {"energy": np.array([input_energy_mu[i]], dtype="float32")}
+                f[f"mu-/sum_E"] = {"sum_E": np.array(all_sum_E_mu, dtype="float32")}
+                f[f"mu-/N_hits"] = {"N_hits": np.array(all_N_hits_mu, dtype="int32")}
+                f[f"mu-/hit_energy"] = {"hit_energy": np.array(hit_energies_mu, dtype="float32")}
+                f[f"mu-/position_z"] = {"position_z": np.array(raw_data[input_energy_mu[i]]["position_z"], dtype="float32")}
+                f[f"mu-/superlayer"] = {"superlayer": np.array(raw_data[input_energy_mu[i]]["superlayers"], dtype="int32")}
+                f[f"mu-/hit_energies_for_one_event"] = {"hit_energies_for_one_event": np.array(hit_energies_for_one_event_mu, dtype="float32")}
+
+                f[f"gamma/energy"] = {"energy": np.array([input_energy_gamma[j]], dtype="float32")}
+                f[f"gamma/sum_E"] = {"sum_E": np.array(all_sum_E_gamma, dtype="float32")}
+                f[f"gamma/N_hits"] = {"N_hits": np.array(all_N_hits_gamma, dtype="int32")}
+                f[f"gamma/hit_energy"] = {"hit_energy": np.array(hit_energies_gamma, dtype="float32")}
+                f[f"gamma/position_z"] = {"position_z": np.array(raw_data_gamma[input_energy_gamma[j]]["position_z"], dtype="float32")}
+                f[f"gamma/superlayer"] = {"superlayer": np.array(raw_data_gamma[input_energy_gamma[j]]["superlayers"], dtype="int32")}
+                f[f"gamma/hit_energies_for_one_event"] = {"hit_energies_for_one_event": np.array(hit_energies_for_one_event_gamma, dtype="float32")}
+                print(f"Written data for {input_energy_gamma[j]} GeV to {filename}")
+
+#    with uproot.recreate(filename) as f:
+#        for particle_type, dataset in {"mu-": raw_data, "gamma": raw_data_gamma}.items():
+#            f.mkdir(particle_type)
 
             # Collect per-event arrays
-            all_sum_E = []
-            all_N_hits = []
-            all_energy_labels_events = []
+#            all_sum_E = []
+#            all_N_hits = []
+#            all_energy_labels_events = []
+#            hit_energies = []
+#            hit_energies_for_one_event = []
 
-            for energy, data in dataset.items():
-                n_events = len(data["sum_E_arr"])
-                all_sum_E.extend(data["sum_E_arr"])
-                all_N_hits.extend(data["N_hits_arr"])
-                all_energy_labels_events.extend([energy] * n_events)
+#            for energy, data in dataset.items():
+#                n_events = len(data["sum_E_arr"])
+#                all_sum_E.extend(data["sum_E_arr"])
+#                all_N_hits.extend(data["N_hits_arr"])
+#                all_energy_labels_events.extend([energy] * n_events)
+#                hit_energies.extend(data["all_hit_energies"])
+#                hit_energies_for_one_event.extend(data["e_list"])
 
             # Write separate trees for event-level quantities
-            f[f"{particle_type}/energy"] = {"energy": np.array(all_energy_labels_events, dtype="float32")}
-            f[f"{particle_type}/sum_E"] = {"sum_E": np.array(all_sum_E, dtype="float32")}
-            f[f"{particle_type}/N_hits"] = {"N_hits": np.array(all_N_hits, dtype="int32")}
+#           f[f"{particle_type}/energy"] = {"energy": np.array(all_energy_labels_events, dtype="float32")}
+#            f[f"{particle_type}/sum_E"] = {"sum_E": np.array(all_sum_E, dtype="float32")}
+#            f[f"{particle_type}/N_hits"] = {"N_hits": np.array(all_N_hits, dtype="int32")}
+#            f[f"{particle_type}/hit_energies_for_one_event"] = {"hit_energies_for_one_event": np.array(hit_energies_for_one_event, dtype="float32")}
 
             # Collect per-hit arrays
-            hit_energies = []
-            positions_z = []
-            superlayers = []
+#            hit_energies = []
+#            positions_z = []
+#            superlayers = []
 
-            for energy, data in dataset.items():
-                hit_energies.extend(data["all_hit_energies"])
-                positions_z.extend(data["position_z"])
-                superlayers.extend(data["superlayers"])
+#            for energy, data in dataset.items():
+#                hit_energies.extend(data["all_hit_energies"])
+#                positions_z.extend(data["position_z"])
+#                superlayers.extend(data["superlayers"])
 
             # Write separate trees for hit-level quantities
-            f[f"{particle_type}/hit_energy"] = {"hit_energy": np.array(hit_energies, dtype="float32")}
-            f[f"{particle_type}/position_z"] = {"position_z": np.array(positions_z, dtype="float32")}
-            f[f"{particle_type}/superlayer"] = {"superlayer": np.array(superlayers, dtype="int32")}
-            print(f"Written {particle_type} data to {filename}")
+#            f[f"{particle_type}/hit_energy"] = {"hit_energy": np.array(hit_energies, dtype="float32")}
+#            f[f"{particle_type}/position_z"] = {"position_z": np.array(positions_z, dtype="float32")}
+#            f[f"{particle_type}/superlayer"] = {"superlayer": np.array(superlayers, dtype="int32")}
+#            print(f"Written {particle_type} data to {filename}")
 
-energies1 = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
+energies1 = [0.15]
+energies2 = [0.05, 0.1, 0.15, 0.2, 0.25, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0]
 energies = [200.0]
 
 # Here you can change the sublayer and merge factor parameters
 raw_data = analyse_distributions(energies, number_of_sublayers=5, merge_factor=2, file_func=get_file)
-raw_data_gamma = analyse_distributions(energies1, number_of_sublayers=5, merge_factor=2, file_func=get_file_gamma)
+raw_data_gamma = analyse_distributions(energies2, number_of_sublayers=5, merge_factor=2, file_func=get_file_gamma)
 
-for energy_to_plot in energies1:
-    plot_fits(
-        raw_data[energies[0]]["sum_E_arr"],
-        raw_data[energies[0]]["N_hits_arr"],
-        energies[0],
-        raw_data[energies[0]]["superlayers"],
-        raw_data[energies[0]]["position_z"],
-        raw_data[energies[0]]["all_hit_energies"],
-        raw_data[energies[0]]["e_list"],
-        raw_data_gamma[energy_to_plot]["e_list"],
-        energy_to_plot,
-        raw_data_gamma[energy_to_plot]["N_hits_arr"],
-        raw_data_gamma[energy_to_plot]["sum_E_arr"]
-    )
-    write_root_file(raw_data, raw_data_gamma, f"/mnt/d/data_roots/combined_cells_sum_and_N_mu-_{energies[0]}GeV_gamma_{energy_to_plot}GeV.root")
+#for energy_to_plot in energies2:
+#    plot_fits(
+#        raw_data[energies[0]]["sum_E_arr"],
+#        raw_data[energies[0]]["N_hits_arr"],
+#        energies[0],
+#        raw_data[energies[0]]["superlayers"],
+#        raw_data[energies[0]]["position_z"],
+#        raw_data[energies[0]]["all_hit_energies"],
+#        raw_data[energies[0]]["e_list"],
+#        raw_data_gamma[energy_to_plot]["e_list"],
+#        energy_to_plot,
+#        raw_data_gamma[energy_to_plot]["N_hits_arr"],
+#        raw_data_gamma[energy_to_plot]["sum_E_arr"]
+#    )
+    
+filename = f"/mnt/d/data_roots/version3_combined_cells_sum_and_N_mu-_{energies[0]}GeV_gamma_{energies2[0]}GeV.root"
+write_root_file(energies, energies2, raw_data, raw_data_gamma, filename)
+print('\a')
+
+
     #change the path to the one needed in the server
+
 
