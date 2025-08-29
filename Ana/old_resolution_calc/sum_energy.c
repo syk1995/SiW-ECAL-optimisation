@@ -1,77 +1,376 @@
+#include "/home/llr/ilc/ritzmann/work/root_macros/functions_resolution_calc.c"
+void sum_energy_notcorr(char* filepath, float input_energy, double_t &mean, double_t &error_val, ofstream &file_notcorr);
+void sum_energy_corr(char* filepath, TSpline3* spline_fit, float input_energy, ofstream &mean_file, ofstream &median_file, ofstream &gauss_file, ofstream &gauss_file2s, ofstream &rms68_file, ofstream &rms90_file, ofstream &myfile_3sig, ofstream &myfile_3sig_fit, ofstream &gamma_file);
+void calc_median_(TTree *tree, TH1F *h, TSpline3* spline_fit, ofstream &median_file, float input_energy);
 
-void sum_energy(char* filename, float input_energy){
+void sum_energy(){
 
-    ofstream myfile;
-    myfile.open ("/home/llr/ilc/ritzmann/work/ECAL_QGSP_BERT_conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy.txt", std::ios_base::app);
+    // energiy values of the simulation
+    float energies[16] = {0.25, 0.5, 0.7, 1, 2, 5, 8, 10, 20, 40, 60 , 80, 100, 150, 200, 250};
+    double_t energies_plot[16] = {0.25, 0.5, 0.7, 1, 2, 5, 8, 10, 20, 40, 60, 80, 100, 150, 200, 250};
 
-    //input for the files fabricio gave me
-    TFile *input = new TFile(TString::Format("/home/llr/ilc/ritzmann/work/TB2022-06/CONF6/build/%s.root", filename), "read");
-    
+    // arrays to store the mean values and corresponding errors
+    double_t mean_values[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double_t error_values[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double_t y_errors[16] = {10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7, 10e-7};
 
-    //open files for photons
-    // ofstream myfile;
-    // myfile.open ("/home/llr/ilc/ritzmann/work/photon_analysis/ECAL_QGSP_BERT_TB2022-06_CONF6_gamma_GeV_params_sum_energy.txt", std::ios_base::app);
+    // txt file for mean number of hits values
+    ofstream file_notcorr;
+    file_notcorr.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_mean_test.txt");
+    // file_notcorr << "energy,mean,mean_err,sigma,sigma_err, goodness" << "\n";
+    file_notcorr << "energy,mean,sigma" << "\n";
 
-    // //input for the photons
-    // TFile *input = new TFile(TString::Format("/data_ilc/flc/ritzmann/simulations/TB2022-06/CONF6/build/%s.root", filename), "read");
+    // read the root files and calculate the mean number of hits and corresponding error
+    for(int i = 0; i < 16; i++) {
+        string argument1, argument2, beam_energy;
+        if(i < 3){
+            argument1 = "/data_ilc/flc/ritzmann/simulations/TB2022-06/CONF6/build/ECAL_QGSP_BERT_TB2022-06_CONF6_e-_";
+            argument2 = "keV.root"; 
+            beam_energy = to_string(1000*energies[i]);
+        }
 
+        else if((i >= 3) && (i < 14)){
+            argument1 = "/home/llr/ilc/ritzmann/work/TB2022-06/CONF6/build/ECAL_QGSP_BERT_conf6_e-_";
+            argument2 = "GeV_5kevt_-42_-42_build_masked.root";
+            beam_energy = to_string(energies[i]);
+        }
+
+        else {
+            argument1 = "/data_ilc/flc/ritzmann/simulations/TB2022-06/CONF6/build/ECAL_QGSP_BERT_TB2022-06_CONF6_e-_";
+            argument2 = "GeV.root";
+            beam_energy = to_string(energies[i]);
+        }
+        // string beam_energy = to_string(energies[i]);
+        beam_energy.erase (beam_energy.find_last_not_of('0') + 1, std::string::npos);
+        beam_energy.erase ( beam_energy.find_last_not_of('.') + 1, std::string::npos );
+        string argument = argument1 + beam_energy + argument2;
+
+        double_t mean_val, error_val;
+        sum_energy_notcorr((char*)argument.c_str(), energies[i], mean_val, error_val, file_notcorr);
+        mean_values[i] = mean_val;
+        error_values[i] = error_val;
+    }
+    file_notcorr.close();
+
+    // spline interpolation
+    TSpline3 *spline_fit = new TSpline3("spline_interpol", mean_values, energies_plot, 16);
+
+    // polynomial fit
+    TCanvas *c_fit = new TCanvas("polynomial_fit", "polynomial_fit");
+    spline_fit->SetLineWidth(2);
+    spline_fit->SetLineColor(kRed);
+    // spline_fit->Draw();
+
+    TGraphErrors *hits = new TGraphErrors(16, mean_values, energies_plot, error_values, 0);
+    hits->Draw("*C");
+
+    TLegend *legend = new TLegend(0.1,0.7,0.48,0.9);
+    legend->AddEntry(spline_fit, "spline", "L");
+    legend->AddEntry(hits, "number of hits", "P");
+    legend->Draw();
+    // straight line
+    TF1 *gr_fit = ((TF1*)gROOT->GetFunction("pol1"));
+    hits->Fit(gr_fit, "WQ");
+    hits->Fit(gr_fit, "Q");
+    hits->Draw("APL");
+    // TF1 *gr_fit = ((TF1 *)(gROOT->GetFunction("pol4")));
+    // hits->Fit(gr_fit, "WQ"); // "initial pre-fit"
+    // hits->Fit(gr_fit, "Q"); // "final fit"   
+    // hits->Draw("APL*");
+    // gSystem->ProcessEvents();
+    // gSystem->ProcessEvents();
+    // TF1 *fit_pol = hits->GetFunction("pol4");
+    // double a0 = fit_pol->GetParameter(0);
+    // double a1 = fit_pol->GetParameter(1);
+    // double a2 = fit_pol->GetParameter(2);
+    // double a3 = fit_pol->GetParameter(3);
+    // double a4 = fit_pol->GetParameter(4);
+    // double fit_params[5] = {a0, a1, a2, a3, a4};
+
+    // // print out the values
+    // for (const auto& e : mean_values) {
+    // std::cout << e << " " << a4*pow(e,4)+a3*pow(e,3)+a2*pow(e,2)+a1*e+a0 << std::endl;
+    // std::cout << e << " " << spline_fit->Eval(e) << std::endl;
+    // }
+
+    // txt files, which store the predicted energy values for the different calculation methods
+    ofstream mean_file;
+    mean_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_mean_test.txt");
+    mean_file << "energy,mean,sigma" << "\n";
+
+    ofstream median_file;
+    median_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_median_test.txt");
+    median_file << "energy,mean,sigma" << "\n";
+
+    ofstream gauss_file;
+    gauss_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_gauss_test.txt");
+    gauss_file << "energy,mean,mean_err,sigma,sigma_err,goodness" << "\n";
+
+    ofstream gauss_file2s;
+    gauss_file2s.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_gauss2s_test.txt");
+    gauss_file2s << "energy,mean,mean_err,sigma,sigma_err,goodness" << "\n";
+
+    ofstream rms68_file;
+    rms68_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_rms68_test.txt");
+    rms68_file << "energy,mean,sigma" << "\n";
+
+    ofstream rms90_file;
+    rms90_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_rms90_test.txt");
+    rms90_file << "energy,mean,sigma" << "\n";
+
+    ofstream myfile_3sig;
+    myfile_3sig.open("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_ratio_3sigmas_sum_energy_test.txt");
+    myfile_3sig << "energy,ratio" << "\n";
+
+    ofstream myfile_3sig_fit;
+    myfile_3sig_fit.open("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_ratio_3sigmas_sum_energy_fitted_test.txt");
+    myfile_3sig_fit << "energy,ratio" << "\n";
+
+    ofstream gamma_file;
+    gamma_file.open ("/home/llr/ilc/ritzmann/work/res_csv_files/conf6_e-_GeV_5kevt_-42_-42_build_masked_params_sum_energy_corr_gamma_test.txt");
+    gamma_file << "energy,mean,sigma,chisq,ndf" << "\n";
+
+    for(int i = 0; i < 16; i++) {
+        string argument1, argument2, beam_energy;
+        if(i < 3){
+            argument1 = "/data_ilc/flc/ritzmann/simulations/TB2022-06/CONF6/build/ECAL_QGSP_BERT_TB2022-06_CONF6_e-_";
+            argument2 = "keV.root"; 
+            beam_energy = to_string(1000*energies[i]);
+        }
+
+        else if((i >= 3) && (i < 14)){
+            argument1 = "/home/llr/ilc/ritzmann/work/TB2022-06/CONF6/build/ECAL_QGSP_BERT_conf6_e-_";
+            argument2 = "GeV_5kevt_-42_-42_build_masked.root";
+            beam_energy = to_string(energies[i]);
+        }
+
+        else {
+            argument1 = "/data_ilc/flc/ritzmann/simulations/TB2022-06/CONF6/build/ECAL_QGSP_BERT_TB2022-06_CONF6_e-_";
+            argument2 = "GeV.root";
+            beam_energy = to_string(energies[i]);
+        }
+        // string beam_energy = to_string(energies[i]);
+        beam_energy.erase (beam_energy.find_last_not_of('0') + 1, std::string::npos);
+        beam_energy.erase ( beam_energy.find_last_not_of('.') + 1, std::string::npos );
+        string argument = argument1 + beam_energy + argument2;
+
+        sum_energy_corr((char*)argument.c_str(), spline_fit, energies[i], mean_file, median_file, gauss_file, gauss_file2s, rms68_file, rms90_file, myfile_3sig, myfile_3sig_fit, gamma_file);
+
+    }
+    mean_file.close();
+    median_file.close();
+    gauss_file.close();
+    gauss_file2s.close();
+    rms68_file.close();
+    rms90_file.close();
+    myfile_3sig.close();
+    myfile_3sig_fit.close();
+    gamma_file.close();
+}
+
+
+// calculate the initial estimate, could be mean or also median
+void sum_energy_notcorr(char* filepath, float input_energy, double_t &mean, double_t &error_val, ofstream &file_notcorr){
+   
+    TFile *input = new TFile(filepath, "read");
     TTree *tree = (TTree*)input->Get("ecal");
+    double_t entries = tree->GetEntries();
 
-    //TH1F *hist = new TH1F("hist", "Histogram", 55000, 0, 55000);
+    TCanvas *c = new TCanvas(("c_" + to_string(input_energy)).c_str(), to_string(input_energy).c_str());
 
-    tree -> Draw("Sum$(hit_energy)");
-    auto hist = (TH1F*)gPad->GetPrimitive("htemp");
+    tree->Draw("Sum$(hit_energy)"); 
+    // TH1F* hist = (TH1F*)gPad->GetPrimitive("htemp");
 
-    //number of events
-    int entries = tree->GetEntries();
+    TH1F* hist_init = (TH1F*)gPad->GetPrimitive("htemp");
+
+    double xmin = hist_init->GetXaxis()->GetXmin();
+    double xmax = hist_init->GetXaxis()->GetXmax();
+
+    int nbins;
+
+    if (input_energy < 1){
+        nbins = 17;
+    }
+
+     if (input_energy < 3 && input_energy >= 1){
+        nbins = 25;
+    }
+
+    if (input_energy > 2 && input_energy < 60){
+        nbins = 60;
+    } 
+
+    if (input_energy < 200 && input_energy >= 60){
+        nbins = 65;
+    }
+
+    if (input_energy >= 200){
+        nbins = 80;
+    }
+
     
-    cout << "Number of events:" << entries << endl;
+    TH1F* hist = new TH1F(("hits" + to_string(input_energy)).c_str(), to_string(input_energy).c_str(), nbins , xmin, xmax);
+    
+    float_t sum_energy = 0;
+    tree->SetBranchAddress("sum_energy", &sum_energy);
 
     vector<int> *hit_energy = 0;
-    vector<int> *hit_isMasked = 0;
+    vector<int> *hit_slab = 0;
+
+    tree->SetBranchAddress("hit_energy", &hit_energy);
+    // tree->SetBranchAddress("hit_slab", &hit_slab);
+
+    // iterating over all events
+    for (int i = 0; i < entries; i++) {
+        tree->GetEntry(i);
+        int n_hit = hit_energy->size(); //number of hits per event
+        int *energy = hit_energy->data(); //energy of each hit
+        double sumE = 0;
+        for (int j = 0; j < n_hit; j++) {
+            sumE = sumE + *energy;
+            energy++;
+        }
+        hist->Fill(sumE);
+        // cout << sumE << " " << sum_energy << endl;
+     }
+
+    hist->Draw();
+    mean = hist->GetMean();
+    double_t std_hist = hist->GetStdDev();
+    error_val = std_hist / TMath::Sqrt(entries);
+
+    gSystem->ProcessEvents();
+    gSystem->ProcessEvents();
+
+    file_notcorr << input_energy << "," << mean << "," << std_hist << "\n";
+}
+
+void sum_energy_corr(char* filepath, TSpline3* spline_fit, float input_energy, ofstream &mean_file, ofstream &median_file, ofstream &gauss_file, ofstream &gauss_file2s, ofstream &rms68_file, ofstream &rms90_file, ofstream &myfile_3sig, ofstream &myfile_3sig_fit, ofstream &gamma_file){
+  
+    TFile *input = new TFile(filepath, "read");
+    TTree *tree = (TTree*)input->Get("ecal");
+    double_t entries = tree->GetEntries(); 
+    cout << "Number of events:" << entries << endl;
+
+    TCanvas *c = new TCanvas(("corr_c_" + to_string(input_energy)).c_str(), to_string(input_energy).c_str());
+
+    tree->Draw("Sum$(hit_energy)");
+    TH1F* hist0 = (TH1F*)gPad->GetPrimitive("htemp");
+    double_t mean0 = hist0->GetMean();
+    double_t sigma0 = hist0->GetStdDev();
+
+    double bin_width = 3.49*sigma0/TMath::Power(entries, 1/3);
+
+    double xmin = spline_fit->Eval(hist0->GetXaxis()->GetXmin());
+    double xmax = spline_fit->Eval(hist0->GetXaxis()->GetXmax());
+
+    int nbins;
+
+    if (input_energy < 1){
+        nbins = 17;
+    }
+
+     if (input_energy < 3 && input_energy >= 1){
+        nbins = 25;
+    }
+
+    if (input_energy > 2 && input_energy < 60){
+        nbins = 60;
+    } 
+
+    if (input_energy < 200 && input_energy >= 60){
+        nbins = 60;
+    }
+
+    if (input_energy >= 200){
+        nbins = 60;
+    }
+
+    TH1F* hist_corr = new TH1F(("corr_hits" + to_string(input_energy)).c_str(), to_string(input_energy).c_str(), nbins , xmin, xmax);
+    
+    float_t sum_energy = 0;
+    tree->SetBranchAddress("sum_energy", &sum_energy);
+
+    vector<int> *hit_energy = 0;
+    vector<int> *hit_slab = 0;
 
     tree->SetBranchAddress("hit_energy", &hit_energy);
 
-    //iterating over all events
-    // for (int i = 0; i < entries; i++) {
-    //     tree->GetEntry(i);
-    //     ULong_t n_hit = hit_energy->size(); //number of hits per event
-    //     int *energy = hit_energy->data(); //energy of each hit
-    //     int *mask = hit_isMasked->data(); //if hit is masked or not
-    //     int tot_energy = 0;
+    for (int i = 0; i < entries; i++){
+        tree->GetEntry(i);
+        // int nhits = nhit_len->data();
+        int n_hit = hit_energy->size(); //number of hits per event
+        int *energy = hit_energy->data(); //energy of each hit
+        double sumE = 0;
+        for (int j = 0; j < n_hit; j++) {
+            sumE = sumE + *energy;
+            energy++;
+        }
+        hist_corr->Fill(spline_fit->Eval(sumE));
+        // cout << sumE << " " << sum_energy << endl;
+     }
+    
 
-    //     for (int j = 0; j < n_hit; j++) {
-    //         //respecting masking
-    //         // if (*mask == 0)
-    //         // {
-    //         //     tot_energy = tot_energy + *energy;
-            
-    //         // //cout << i << " : " << j << " : " << *energy << endl;
-    //         // }
-    //         //not respecting masking
-    //         tot_energy = tot_energy + *energy;
+    hist_corr->Draw();
+    gSystem->ProcessEvents();
+    gSystem->ProcessEvents();
 
-    //         mask++;
-    //         energy++;
-    //     }
-    //     //cout << "Total Energy:" << tot_energy << endl;
-    //     hist->Fill(tot_energy);
-    //  }
-     hist->Draw();
-     //hist->Fit("gaus", "C", "M", 130, 210);
-     hist->Fit("gaus");
-     TF1 *fit = hist->GetFunction("gaus");
-     double mean = fit->GetParameter(1);
-     double sigma = fit->GetParameter(2);
-     double mean_err = fit->GetParError(1);
-     double sigma_err = fit->GetParError(2);
-     double chi_squ = fit->GetChisquare();
-     int bins = hist->GetNbinsX();
-     double goodness = chi_squ / (bins - 3);
-     cout << "resolution:" << sigma/mean << endl;
-     cout << "goodness-of-fit:" << goodness << endl;
-     hist->Draw();
+    TH1F* hist2_sig = (TH1F*)hist_corr->Clone();
 
-    //  myfile << input_energy << "," << mean << "," << mean_err << "," << sigma << "," << sigma_err << "\n";
-    //  myfile.close(); 
-}
+    double ratio_3sig = calc_ratio(hist_corr, entries);
+    myfile_3sig << input_energy << "," << ratio_3sig << "\n";
+
+    double mean_hist = hist_corr->GetMean();
+    double std_hist = hist_corr->GetStdDev();
+    mean_file << input_energy << "," << mean_hist << "," << std_hist << "\n";
+
+    double mean_rms68, rms_val68;
+    rms68(hist_corr, mean_rms68, rms_val68);
+    // correction value for rms68
+    rms68_file << input_energy << "," << mean_rms68 << "," << 1.769 * rms_val68 << "\n";
+
+    double mean_rms90, rms_val90;
+    rms90(hist_corr, mean_rms90, rms_val90);
+    // correction value for rms90
+    rms90_file << input_energy << "," << mean_rms90 << "," << 1.232 * rms_val90 << "\n";
+
+    calc_median_(tree, hist_corr, spline_fit, median_file, input_energy);
+        
+    fit_gauss(hist_corr, gauss_file, input_energy, myfile_3sig_fit, entries);
+    fit_gauss_2sig(hist2_sig, gauss_file2s, mean_hist, std_hist, input_energy);
+    gamma_fit(hist_corr, input_energy, gamma_file);
+
+    // TCanvas *rms = new TCanvas(("rms_68" + to_string(input_energy)).c_str(), to_string(input_energy).c_str());
+    }
+
+    void calc_median_(TTree *tree, TH1F *h, TSpline3* spline_fit, ofstream &median_file, float input_energy){
+        double median, MAD;
+        double percentile = 0.5;
+        h->ComputeIntegral();
+        h->GetQuantiles(1, &median, &percentile);
+
+        double_t entries = tree->GetEntries(); 
+        cout << "Number of events:" << entries << endl;
+
+        double xmin_mad = h->GetBinLowEdge(1) - median;
+        double xmax_mad = h->GetBinLowEdge(h->GetNbinsX()+1) - median;
+
+        TH1F* hist_mad = new TH1F(("hist_mad" + to_string(input_energy)).c_str(), ("hist_mad"+to_string(input_energy)).c_str(), 100 , xmin_mad, xmax_mad);
+        
+        float_t sum_energy = 0;
+        tree->SetBranchAddress("sum_energy", &sum_energy);
+
+        for (int i = 0; i < entries; i++){
+            tree->GetEntry(i);
+            // int nhits = nhit_len->data();
+            hist_mad->Fill(abs(spline_fit->Eval(sum_energy) - median));
+        }
+
+        hist_mad->ComputeIntegral();
+        hist_mad->GetQuantiles(1, &MAD, &percentile);
+
+        median_file << input_energy << "," << median << "," << 1.4826 * MAD << "\n";
+    }
+
+
+
