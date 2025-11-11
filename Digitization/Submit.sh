@@ -3,22 +3,23 @@ pwd=$PWD
 SCRIPT_PATH=/home/llr/ilc/shi/code/Energy-Reco/Digitization
 MY_SCRIPT=${SCRIPT_PATH}/combine_cells.py
 PARTICLE=gamma
+Cell_Size=1
 COMBINE_X=1
 COMBINE_Y=1
-COMBINE_SI=3
-SI_THICKNESS=0.15
-COMBINE_LAYER=2
-ABSORBER_LAYER=60
+COMBINE_SI=1
+SI_THICKNESS=0.75
+COMBINE_LAYER=4
+ABSORBER_LAYER=120
+CONF=CONF3
 MERGE_NAME=$(printf "Merged_X%.1fmm_Y%.1fmm_Si%.2fmm_layer%.0f_in%d" \
-    "$(echo "5*$COMBINE_X" | bc -l)" \
-    "$(echo "5*$COMBINE_Y" | bc -l)" \
+    "$(echo "$Cell_Size*$COMBINE_X" | bc -l)" \
+    "$(echo "$Cell_Size*$COMBINE_Y" | bc -l)" \
     "$(echo "$COMBINE_SI * $SI_THICKNESS" | bc -l)" \
     "$(echo "$ABSORBER_LAYER / $COMBINE_LAYER" | bc -l)" \
     "$ABSORBER_LAYER")
-
 echo $MERGE_NAME
-DATA_PATH="/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF0/${PARTICLE}"
-DATA_TYPE=Uniformq  # Train, Validate, Uniform
+DATA_PATH="/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/${CONF}/${PARTICLE}"
+DATA_TYPE=Uniform  # Validate or Uniform, Train is not used anymore
 case $DATA_TYPE in
     Train)
         ENERGY_LIST=("${Energy_train[@]}")
@@ -45,7 +46,7 @@ echo "DATA TYPE: $DATA_TYPE"
 echo "INPUT PATH: $INPUT_PATH"
 echo "OUTPUT PATH: $OUTPUT_PATH"
 # ===================== Submit Directory =====================
-Submit_DIR="${SCRIPT_PATH}/Submit_${DATA_TYPE}"
+Submit_DIR="${SCRIPT_PATH}/Submit_${DATA_TYPE}_${MERGE_NAME}"
 rm -rf "$Submit_DIR"
 mkdir -p "$Submit_DIR"
 cd $Submit_DIR
@@ -56,10 +57,7 @@ for input_file in "${INPUT_PATH}"/*.root; do
     output_file="${OUTPUT_PATH}/${file_name}.root"
     cat <<EOF > "$JOB_SCRIPT"
 #!/bin/bash
-CONDA_PATH=/home/llr/ilc/shi/miniconda3
-. ${CONDA_PATH}/etc/profile.d/conda.sh
-conda activate root_env
-export PATH=/data_ilc/flc/shi/miniconda3/envs/root_env/bin:$PATH
+. /home/llr/ilc/shi/env/root_torch_condor.sh
 which root
 which python
 root --version
@@ -73,14 +71,39 @@ python ${MY_SCRIPT} \\
     --input_file "$input_file" \\
     --output_file "$output_file"
 EOF
-
     chmod +x "$JOB_SCRIPT"
 done
 
 
-# ===================== Submit All =====================
-for job in ${Submit_DIR}/*.sh; do
-    echo "Submitting job: $job"
-    t3submit -singleout "$job"
+# # ===================== Submit All =====================
+# for job in ${Submit_DIR}/*.sh; do
+#     echo "Submitting job: $job"
+#     t3submit -singleout "$job"
+# done
+# ===================== Submit Master Job =====================
+
+BatchSize=10
+MasterCount=0
+JobCount=0
+BatchFile=""
+
+for job in "${Submit_DIR}"/*.sh; do
+    ((JobCount++))
+    if (( (JobCount-1) % BatchSize == 0 )); then
+        BatchFile="${Submit_DIR}/batch_${MasterCount}.sh"
+        > "$BatchFile"
+        ((MasterCount++))
+    fi
+    echo "echo 'Running job: $job'" >> "$BatchFile"
+    echo "bash \"$job\"" >> "$BatchFile"
+done
+
+echo "All batch files created. Total batches: $MasterCount"
+
+for ((i=0; i<MasterCount; i++)); do
+    BatchFile="${Submit_DIR}/batch_${i}.sh"
+    chmod +x "$BatchFile"
+    echo "Submitting batch: $BatchFile"
+    t3submit -singleout "$BatchFile"
 done
 cd $pwd

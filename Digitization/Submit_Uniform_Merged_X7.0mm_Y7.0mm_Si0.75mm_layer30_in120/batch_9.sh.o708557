@@ -1,0 +1,531 @@
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_91.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_91.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_91.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 669196
+  Number of merged original cells: 11
+  Original cells merged:
+    calolayer=49, index_x=98, index_y=97, index_z=0, energy=0.000095
+    calolayer=49, index_x=101, index_y=97, index_z=0, energy=0.000154
+    calolayer=49, index_x=101, index_y=96, index_z=0, energy=0.000086
+    calolayer=49, index_x=103, index_y=94, index_z=0, energy=0.000069
+    calolayer=49, index_x=104, index_y=92, index_z=0, energy=0.000018
+    calolayer=49, index_x=103, index_y=92, index_z=0, energy=0.000526
+    calolayer=49, index_x=103, index_y=93, index_z=0, energy=0.000246
+    calolayer=49, index_x=102, index_y=93, index_z=0, energy=0.000095
+    calolayer=49, index_x=102, index_y=92, index_z=0, energy=0.000496
+    calolayer=49, index_x=100, index_y=95, index_z=0, energy=0.000296
+    calolayer=49, index_x=98, index_y=96, index_z=0, energy=0.000220
+  Combined cell info:
+    index_x=14, index_y=13, index_z=0, calolayer=12, abslayer=0
+    Position (x,y,z)=(3.500, -3.500, 245.175)
+    Total combined energy=0.002301
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_91.root
+[Info] Cell combination completed in 105.49 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_92.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_92.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_92.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 668939
+  Number of merged original cells: 11
+  Original cells merged:
+    calolayer=45, index_x=92, index_y=97, index_z=0, energy=0.000217
+    calolayer=45, index_x=97, index_y=96, index_z=0, energy=0.000196
+    calolayer=45, index_x=97, index_y=97, index_z=0, energy=0.000142
+    calolayer=45, index_x=94, index_y=97, index_z=0, energy=0.000684
+    calolayer=45, index_x=93, index_y=94, index_z=0, energy=0.000159
+    calolayer=45, index_x=94, index_y=94, index_z=0, energy=0.000221
+    calolayer=45, index_x=94, index_y=93, index_z=0, energy=0.000069
+    calolayer=45, index_x=96, index_y=91, index_z=0, energy=0.000098
+    calolayer=45, index_x=95, index_y=95, index_z=0, energy=0.000395
+    calolayer=45, index_x=94, index_y=95, index_z=0, energy=0.000010
+    calolayer=45, index_x=94, index_y=91, index_z=0, energy=0.000351
+  Combined cell info:
+    index_x=13, index_y=13, index_z=0, calolayer=11, abslayer=0
+    Position (x,y,z)=(-3.500, -3.500, 224.975)
+    Total combined energy=0.002542
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_92.root
+[Info] Cell combination completed in 184.79 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_93.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_93.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_93.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 567056
+  Number of merged original cells: 16
+  Original cells merged:
+    calolayer=65, index_x=111, index_y=79, index_z=0, energy=0.000380
+    calolayer=65, index_x=111, index_y=78, index_z=0, energy=0.000159
+    calolayer=65, index_x=106, index_y=78, index_z=0, energy=0.000027
+    calolayer=65, index_x=105, index_y=82, index_z=0, energy=0.000107
+    calolayer=65, index_x=106, index_y=82, index_z=0, energy=0.000623
+    calolayer=65, index_x=106, index_y=81, index_z=0, energy=0.000058
+    calolayer=65, index_x=107, index_y=82, index_z=0, energy=0.000910
+    calolayer=65, index_x=108, index_y=82, index_z=0, energy=0.000246
+    calolayer=65, index_x=109, index_y=81, index_z=0, energy=0.000012
+    calolayer=65, index_x=108, index_y=81, index_z=0, energy=0.000081
+    calolayer=65, index_x=108, index_y=80, index_z=0, energy=0.000051
+    calolayer=65, index_x=109, index_y=80, index_z=0, energy=0.000439
+    calolayer=65, index_x=109, index_y=79, index_z=0, energy=0.000000
+    calolayer=65, index_x=110, index_y=79, index_z=0, energy=0.000265
+    calolayer=65, index_x=110, index_y=80, index_z=0, energy=0.000166
+    calolayer=65, index_x=111, index_y=80, index_z=0, energy=0.000023
+  Combined cell info:
+    index_x=15, index_y=11, index_z=0, calolayer=16, abslayer=0
+    Position (x,y,z)=(10.500, -17.500, 325.975)
+    Total combined energy=0.003548
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_93.root
+[Info] Cell combination completed in 224.06 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_94.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_94.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_94.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 617478
+  Number of merged original cells: 11
+  Original cells merged:
+    calolayer=25, index_x=89, index_y=89, index_z=0, energy=0.000023
+    calolayer=25, index_x=88, index_y=89, index_z=0, energy=0.000337
+    calolayer=25, index_x=87, index_y=89, index_z=0, energy=0.000087
+    calolayer=25, index_x=87, index_y=88, index_z=0, energy=0.000197
+    calolayer=25, index_x=86, index_y=88, index_z=0, energy=0.000366
+    calolayer=25, index_x=85, index_y=88, index_z=0, energy=0.000313
+    calolayer=25, index_x=84, index_y=88, index_z=0, energy=0.000117
+    calolayer=25, index_x=84, index_y=87, index_z=0, energy=0.000302
+    calolayer=25, index_x=90, index_y=86, index_z=0, energy=0.000328
+    calolayer=25, index_x=90, index_y=87, index_z=0, energy=0.000030
+    calolayer=25, index_x=89, index_y=87, index_z=0, energy=0.000005
+  Combined cell info:
+    index_x=12, index_y=12, index_z=0, calolayer=6, abslayer=0
+    Position (x,y,z)=(-10.500, -10.500, 123.975)
+    Total combined energy=0.002104
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_94.root
+[Info] Cell combination completed in 1175.51 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_95.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_95.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_95.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 618000
+  Number of merged original cells: 12
+  Original cells merged:
+    calolayer=65, index_x=103, index_y=90, index_z=0, energy=0.000324
+    calolayer=65, index_x=103, index_y=89, index_z=0, energy=0.000562
+    calolayer=65, index_x=100, index_y=88, index_z=0, energy=0.000193
+    calolayer=65, index_x=104, index_y=87, index_z=0, energy=0.000396
+    calolayer=65, index_x=104, index_y=86, index_z=0, energy=0.000167
+    calolayer=65, index_x=103, index_y=86, index_z=0, energy=0.000333
+    calolayer=65, index_x=103, index_y=85, index_z=0, energy=0.000277
+    calolayer=65, index_x=102, index_y=85, index_z=0, energy=0.000004
+    calolayer=65, index_x=102, index_y=84, index_z=0, energy=0.000294
+    calolayer=65, index_x=99, index_y=85, index_z=0, energy=0.000001
+    calolayer=65, index_x=99, index_y=86, index_z=0, energy=0.000213
+    calolayer=65, index_x=103, index_y=88, index_z=0, energy=0.000000
+  Combined cell info:
+    index_x=14, index_y=12, index_z=0, calolayer=16, abslayer=0
+    Position (x,y,z)=(3.500, -10.500, 325.975)
+    Total combined energy=0.002766
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_95.root
+[Info] Cell combination completed in 255.23 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_96.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_96.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_96.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 720387
+  Number of merged original cells: 13
+  Original cells merged:
+    calolayer=13, index_x=102, index_y=102, index_z=0, energy=0.001372
+    calolayer=13, index_x=100, index_y=102, index_z=0, energy=0.000741
+    calolayer=13, index_x=99, index_y=102, index_z=0, energy=0.000050
+    calolayer=13, index_x=102, index_y=103, index_z=0, energy=0.000508
+    calolayer=13, index_x=101, index_y=102, index_z=0, energy=0.000125
+    calolayer=13, index_x=100, index_y=103, index_z=0, energy=0.000027
+    calolayer=13, index_x=101, index_y=103, index_z=0, energy=0.000416
+    calolayer=13, index_x=99, index_y=101, index_z=0, energy=0.000253
+    calolayer=13, index_x=98, index_y=101, index_z=0, energy=0.000069
+    calolayer=13, index_x=103, index_y=102, index_z=0, energy=0.000261
+    calolayer=13, index_x=104, index_y=100, index_z=0, energy=0.000032
+    calolayer=13, index_x=104, index_y=99, index_z=0, energy=0.000239
+    calolayer=13, index_x=101, index_y=104, index_z=0, energy=0.000057
+  Combined cell info:
+    index_x=14, index_y=14, index_z=0, calolayer=3, abslayer=0
+    Position (x,y,z)=(3.500, 3.500, 63.375)
+    Total combined energy=0.004150
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_96.root
+[Info] Cell combination completed in 221.71 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_97.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_97.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_97.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 668936
+  Number of merged original cells: 12
+  Original cells merged:
+    calolayer=33, index_x=97, index_y=95, index_z=0, energy=0.000303
+    calolayer=33, index_x=96, index_y=95, index_z=0, energy=0.000361
+    calolayer=33, index_x=95, index_y=95, index_z=0, energy=0.000380
+    calolayer=33, index_x=94, index_y=95, index_z=0, energy=0.000268
+    calolayer=33, index_x=94, index_y=96, index_z=0, energy=0.000054
+    calolayer=33, index_x=93, index_y=96, index_z=0, energy=0.000315
+    calolayer=33, index_x=92, index_y=97, index_z=0, energy=0.000226
+    calolayer=33, index_x=91, index_y=97, index_z=0, energy=0.000338
+    calolayer=33, index_x=92, index_y=94, index_z=0, energy=0.000361
+    calolayer=33, index_x=97, index_y=97, index_z=0, energy=0.000172
+    calolayer=33, index_x=95, index_y=97, index_z=0, energy=0.000325
+    calolayer=33, index_x=96, index_y=97, index_z=0, energy=0.000500
+  Combined cell info:
+    index_x=13, index_y=13, index_z=0, calolayer=8, abslayer=0
+    Position (x,y,z)=(-3.500, -3.500, 164.375)
+    Total combined energy=0.003603
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_97.root
+[Info] Cell combination completed in 243.93 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_98.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_98.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_98.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 567049
+  Number of merged original cells: 12
+  Original cells merged:
+    calolayer=37, index_x=105, index_y=80, index_z=0, energy=0.000201
+    calolayer=37, index_x=106, index_y=80, index_z=0, energy=0.000505
+    calolayer=37, index_x=106, index_y=79, index_z=0, energy=0.000050
+    calolayer=37, index_x=107, index_y=79, index_z=0, energy=0.000515
+    calolayer=37, index_x=108, index_y=79, index_z=0, energy=0.000167
+    calolayer=37, index_x=108, index_y=78, index_z=0, energy=0.000143
+    calolayer=37, index_x=109, index_y=78, index_z=0, energy=0.000374
+    calolayer=37, index_x=110, index_y=78, index_z=0, energy=0.000102
+    calolayer=37, index_x=110, index_y=77, index_z=0, energy=0.000344
+    calolayer=37, index_x=111, index_y=77, index_z=0, energy=0.000239
+    calolayer=37, index_x=107, index_y=80, index_z=0, energy=0.000153
+    calolayer=37, index_x=108, index_y=80, index_z=0, energy=0.000317
+  Combined cell info:
+    index_x=15, index_y=11, index_z=0, calolayer=9, abslayer=0
+    Position (x,y,z)=(10.500, -17.500, 184.575)
+    Total combined energy=0.003111
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_98.root
+[Info] Cell combination completed in 223.28 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_99.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_99.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_99.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 720388
+  Number of merged original cells: 12
+  Original cells merged:
+    calolayer=17, index_x=102, index_y=102, index_z=0, energy=0.000946
+    calolayer=17, index_x=101, index_y=104, index_z=0, energy=0.000577
+    calolayer=17, index_x=100, index_y=104, index_z=0, energy=0.000074
+    calolayer=17, index_x=101, index_y=103, index_z=0, energy=0.000000
+    calolayer=17, index_x=101, index_y=102, index_z=0, energy=0.000719
+    calolayer=17, index_x=101, index_y=101, index_z=0, energy=0.000026
+    calolayer=17, index_x=101, index_y=100, index_z=0, energy=0.000056
+    calolayer=17, index_x=102, index_y=100, index_z=0, energy=0.000269
+    calolayer=17, index_x=100, index_y=100, index_z=0, energy=0.000008
+    calolayer=17, index_x=100, index_y=99, index_z=0, energy=0.000274
+    calolayer=17, index_x=99, index_y=99, index_z=0, energy=0.000570
+    calolayer=17, index_x=99, index_y=98, index_z=0, energy=0.000569
+  Combined cell info:
+    index_x=14, index_y=14, index_z=0, calolayer=4, abslayer=0
+    Position (x,y,z)=(3.500, 3.500, 83.575)
+    Total combined energy=0.004088
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_99.root
+[Info] Cell combination completed in 223.48 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/run_combine_0_70GeV_9.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/MC/Uniform/0_70GeV_9.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_9.root
+Combined Parameters
+  Combined_X: 7.0 mm Combined_X_No: 28 CombineFactor_X: 7
+  Combined_Y: 7.0 mm Combined_Y_No: 28 CombineFactor_Y: 7
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  Combined CellID: 669187
+  Number of merged original cells: 11
+  Original cells merged:
+    calolayer=13, index_x=102, index_y=96, index_z=0, energy=0.000496
+    calolayer=13, index_x=102, index_y=95, index_z=0, energy=0.000152
+    calolayer=13, index_x=103, index_y=97, index_z=0, energy=0.000693
+    calolayer=13, index_x=102, index_y=97, index_z=0, energy=0.000136
+    calolayer=13, index_x=101, index_y=96, index_z=0, energy=0.000327
+    calolayer=13, index_x=100, index_y=96, index_z=0, energy=0.000420
+    calolayer=13, index_x=99, index_y=96, index_z=0, energy=0.000065
+    calolayer=13, index_x=99, index_y=97, index_z=0, energy=0.000068
+    calolayer=13, index_x=102, index_y=94, index_z=0, energy=0.000000
+    calolayer=13, index_x=103, index_y=94, index_z=0, energy=0.000321
+    calolayer=13, index_x=104, index_y=97, index_z=0, energy=0.000033
+  Combined cell info:
+    index_x=14, index_y=13, index_z=0, calolayer=3, abslayer=0
+    Position (x,y,z)=(3.500, -3.500, 63.375)
+    Total combined energy=0.002711
+Processing event: 1000
+Processing event: 2000
+Processing event: 3000
+Processing event: 4000
+Processing event: 5000
+Processing event: 6000
+Processing event: 7000
+Processing event: 8000
+Processing event: 9000
+Processing event: 10000
+Processing event: 11000
+Processing event: 12000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF3/gamma/Train/Merged_X7.0mm_Y7.0mm_Si0.75mm_layer30_in120/Uniform/0_70GeV_9.root
+[Info] Cell combination completed in 209.71 seconds.

@@ -12,29 +12,52 @@ import argparse
 import time
 plt.style.use('/home/llr/ilc/shi/code/Plot_style/cepc.mplstyle')
 fig_size = (6, 6)
-Cell_X_No=40
-Cell_Y_No=40
-Layer_No=80
-Cell_X=5.0
-Cell_Y=5.0
-Si_Z=0.15
-Cell_Z=2.25
-Start_Z=1.575
-MIP=(0.0410,0.0861,0.1328,0.1803,0.2282)#MeV
+#For CONF0
+# Cell_X_No=40
+# Cell_Y_No=40
+# Layer_No=80
+# Cell_X=5.0
+# Cell_Y=5.0
+# Si_Z=0.15
+# Cell_Z=2.25
+# Start_Z=1.575
+# MIP=(0.0410,0.0861,0.1328,0.1803,0.2282)#MeV
+# def decode_volid_and_indices(volid_array):
+#     volid_array = volid_array.astype(np.int64)
+#     calolayer = volid_array & 0x7F
+#     abslayer  = (volid_array >> 7) & 0x1
+#     cellid    = (volid_array >> 8) & 0x1FFF
+#     index_z = cellid // 1600
+#     index_y = (cellid % 1600) // 40
+#     index_x = cellid % 40
+#     return calolayer, abslayer, index_x, index_y, index_z
+# def encode_volid_array(calolayer, abslayer, index_x, index_y, index_z):
+#     cellid = index_x + 40 * index_y + 1600 * index_z
+#     volid = (calolayer & 0x7F) | ((abslayer & 0x1) << 7) | (cellid << 8)
+#     return volid.astype(np.int64)
+#For CONF3
+Cell_X_No=200
+Cell_Y_No=200
+Layer_No=120
+Cell_X=1.0
+Cell_Y=1.0
+Si_Z=0.75
+Cell_Z=5.05
+Start_Z=2.775
+MIP=(0.0410,0.0861,0.1328,0.1803,0.2282)
 def decode_volid_and_indices(volid_array):
     volid_array = volid_array.astype(np.int64)
     calolayer = volid_array & 0x7F
     abslayer  = (volid_array >> 7) & 0x1
-    cellid    = (volid_array >> 8) & 0x1FFF
-    index_z = cellid // 1600
-    index_y = (cellid % 1600) // 40
-    index_x = cellid % 40
+    cellid    = (volid_array >> 8) & 0xFFFF
+    index_z = cellid // (Cell_X_No * Cell_Y_No)
+    index_y = (cellid % (Cell_X_No * Cell_Y_No)) // Cell_X_No
+    index_x = cellid % Cell_X_No
     return calolayer, abslayer, index_x, index_y, index_z
 def encode_volid_array(calolayer, abslayer, index_x, index_y, index_z):
-    cellid = index_x + 40 * index_y + 1600 * index_z
+    cellid = index_x + Cell_X_No * index_y + (Cell_X_No * Cell_Y_No) * index_z
     volid = (calolayer & 0x7F) | ((abslayer & 0x1) << 7) | (cellid << 8)
     return volid.astype(np.int64)
-
 # %%
 vectors_out = {
     "simplecaloRO.cellID": ROOT.std.vector('long')(),
@@ -86,8 +109,8 @@ def combine_cells(input_file, output_file, CombineFactor_X, CombineFactor_Y, Com
     Combined_X_No = int(Cell_X_No / CombineFactor_X)
     Combined_Y_No = int(Cell_Y_No / CombineFactor_Y)
     print("Combined Parameters")
-    print("  Combined_X:", Combined_Cell_X, "mm", "Combined_X_No:", Combined_X_No)
-    print("  Combined_Y:", Combined_Cell_Y, "mm", "Combined_Y_No:", Combined_Y_No)
+    print("  Combined_X:", Combined_Cell_X, "mm", "Combined_X_No:", Combined_X_No, "CombineFactor_X:", CombineFactor_X)
+    print("  Combined_Y:", Combined_Cell_Y, "mm", "Combined_Y_No:", Combined_Y_No, "CombineFactor_Y:", CombineFactor_Y)
     print("  Combined_Si:", Combined_Si, "mm", "Combined_Factor_Si:", CombineFactor_Si, "Si_Z:", Si_Z)
     print("  Combined_Z:", Combined_Z, "mm", "Selected_LayerNo:", Absorber_layer, "Combined_layerNo:", Combined_layerNo)
     #Loop input and combine cells
@@ -119,34 +142,49 @@ def combine_cells(input_file, output_file, CombineFactor_X, CombineFactor_Y, Com
         Combined_index_z = np.full_like(Combined_index_x, CombineFactor_Si-1, dtype=np.int64)
         Combined_calolayer = (calolayer-1) // CombineFactor_layer
         Combined_abslayer = abslayer
-        Combined_cellID = encode_volid_array(Combined_calolayer, Combined_abslayer, Combined_index_x, Combined_index_y, Combined_index_z)
-        Combined_calolayer, Combined_abslayer, Combined_index_x, Combined_index_y, Combined_index_z = decode_volid_and_indices(Combined_cellID)
-        Combined_cellID, unique_indices = np.unique(Combined_cellID, return_inverse=True)
-        Combined_energy = np.zeros_like(Combined_cellID, dtype=np.float32)
+        Combined_cellID_all = encode_volid_array(Combined_calolayer, Combined_abslayer, Combined_index_x, Combined_index_y, Combined_index_z)
+        Combined_cellID_unique, unique_indices = np.unique(Combined_cellID_all, return_inverse=True)
+        Combined_energy = np.zeros_like(Combined_cellID_unique, dtype=np.float32)
         np.add.at(Combined_energy, unique_indices, energy_i)
-        Combined_calolayer, Combined_abslayer, Combined_index_x, Combined_index_y, Combined_index_z = decode_volid_and_indices(Combined_cellID)
+        Combined_calolayer, Combined_abslayer, Combined_index_x, Combined_index_y, Combined_index_z = decode_volid_and_indices(Combined_cellID_unique)
         Combined_pos_x = (Combined_index_x - Combined_X_No / 2.0 + 0.5) * Combined_Cell_X
         Combined_pos_y = (Combined_index_y - Combined_Y_No / 2.0 + 0.5) * Combined_Cell_Y
         Combined_pos_z = Start_Z + Combined_calolayer * Combined_Z
-        mask = Combined_pos_x >10
-        # print("  after combining :")
-        # print("    calolayer:", Combined_calolayer[mask])
-        # print("    abslayer:", Combined_abslayer[mask])
-        # print("    index_x:", Combined_index_x[mask])
-        # print("    index_y:", Combined_index_y[mask])
-        # print("    index_z:", Combined_index_z[mask])
-        # print("    energy_i:", Combined_energy[mask])
-        # print("    pos_x:", Combined_pos_x[mask])
-        # print("    pos_y:", Combined_pos_y[mask])
-        # print("    pos_z:", Combined_pos_z[mask])
-        #Store output
-        #MCP p0
+
+        if i_event == 0:
+            print("\nExample: first combined cell that merges multiple original cells")
+            counts = np.bincount(unique_indices)
+            multi_idx = np.where(counts > 10)[0]
+            if len(multi_idx) == 0:
+                print("  No combined cell merges more than one original cell.")
+            else:
+                idx = multi_idx[0]
+                target_cellID = Combined_cellID_unique[idx]
+                print(f"  Combined CellID: {target_cellID}")
+                print(f"  Number of merged original cells: {counts[idx]}")
+
+                mask_first = (Combined_cellID_all == target_cellID)
+                print("  Original cells merged:")
+                for k in np.where(mask_first)[0]:
+                    print(f"    calolayer={calolayer[k]}, "
+                  f"index_x={index_x[k]}, index_y={index_y[k]}, index_z={index_z[k]}, "
+                  f"energy={energy_i[k]:.6f}")
+                print("  Combined cell info:")
+                print(f"    index_x={Combined_index_x[idx]}, "
+              f"index_y={Combined_index_y[idx]}, index_z={Combined_index_z[idx]}, "
+              f"calolayer={Combined_calolayer[idx]}, abslayer={Combined_abslayer[idx]}")
+                print(f"    Position (x,y,z)=({Combined_pos_x[idx]:.3f}, "
+              f"{Combined_pos_y[idx]:.3f}, {Combined_pos_z[idx]:.3f})")
+                print(f"    Total combined energy={Combined_energy[idx]:.6f}")
+
+
+
         px0 = MCP_px[i_event][0]
         py0 = MCP_py[i_event][0]
         pz0 = MCP_pz[i_event][0]
         p0 = np.sqrt(px0**2 + py0**2 + pz0**2)
 
-        vectors_out["simplecaloRO.cellID"].assign(Combined_cellID.astype(np.int64))
+        vectors_out["simplecaloRO.cellID"].assign(Combined_cellID_unique.astype(np.int64))
         vectors_out["simplecaloRO.energy"].assign(Combined_energy.astype(np.float32))
         vectors_out["simplecaloRO.position.x"].assign(Combined_pos_x.astype(np.float32))
         vectors_out["simplecaloRO.position.y"].assign(Combined_pos_y.astype(np.float32))
