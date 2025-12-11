@@ -1,0 +1,240 @@
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_38.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_38.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_38.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_38.root
+[Info] Cell combination completed in 5.69 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_39.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_39.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_39.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_39.root
+[Info] Cell combination completed in 6.56 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_3.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_3.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_3.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_3.root
+[Info] Cell combination completed in 6.98 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_40.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_40.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_40.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_40.root
+[Info] Cell combination completed in 6.19 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_41.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_41.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_41.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_41.root
+[Info] Cell combination completed in 5.24 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_42.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_42.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_42.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_42.root
+[Info] Cell combination completed in 5.28 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_43.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_43.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_43.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_43.root
+[Info] Cell combination completed in 6.53 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_44.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_44.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_44.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_44.root
+[Info] Cell combination completed in 7.49 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_45.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_45.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_45.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_45.root
+[Info] Cell combination completed in 6.25 seconds.
+Running job: /home/llr/ilc/shi/code/Energy-Reco/Digitization/Submit_Uniform_Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/run_combine_0_15GeV_46.sh
+ROOT path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+Python path: /data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/root
+/data_ilc/flc/shi/miniconda3/envs/root_torch/bin/python
+ROOT Version: 6.36.04
+Built for linuxx8664gcc on Aug 29 2025, 16:52:26
+From tags/6-36-04@6-36-04
+Python 3.12.11
+[Info] Starting cell combination...
+[Info] Loaded tree 'events' from /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/MC/Uniform/0_15GeV_46.root
+[INFO] RECREATE /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_46.root
+Combined Parameters
+  Combined_X: 1.0 mm Combined_X_No: 200 CombineFactor_X: 1
+  Combined_Y: 1.0 mm Combined_Y_No: 200 CombineFactor_Y: 1
+  Combined_Si: 0.75 mm Combined_Factor_Si: 1 Si_Z: 0.75
+  Combined_Z: 20.2 mm Selected_LayerNo: 120 Combined_layerNo: 30
+Processing event: 0
+
+Example: first combined cell that merges multiple original cells
+  No combined cell merges more than one original cell.
+Processing event: 1000
+[Info] Written combined file to /home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/CONF4/gamma/Train/Merged_X1.0mm_Y1.0mm_Si0.15mm_layer30_in120/Uniform/0_15GeV_46.root
+[Info] Cell combination completed in 5.97 seconds.

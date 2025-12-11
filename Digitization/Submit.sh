@@ -7,10 +7,10 @@ Cell_Size=1
 COMBINE_X=1
 COMBINE_Y=1
 COMBINE_SI=1
-SI_THICKNESS=0.75
+SI_THICKNESS=0.15
 COMBINE_LAYER=4
 ABSORBER_LAYER=120
-CONF=CONF3
+CONF=CONF4
 MERGE_NAME=$(printf "Merged_X%.1fmm_Y%.1fmm_Si%.2fmm_layer%.0f_in%d" \
     "$(echo "$Cell_Size*$COMBINE_X" | bc -l)" \
     "$(echo "$Cell_Size*$COMBINE_Y" | bc -l)" \
@@ -19,7 +19,7 @@ MERGE_NAME=$(printf "Merged_X%.1fmm_Y%.1fmm_Si%.2fmm_layer%.0f_in%d" \
     "$ABSORBER_LAYER")
 echo $MERGE_NAME
 DATA_PATH="/home/llr/ilc/shi/data/SiWECAL-Prototype/Simu2025-06/${CONF}/${PARTICLE}"
-DATA_TYPE=Uniform  # Validate or Uniform, Train is not used anymore
+DATA_TYPE=Validate  # Validate or Uniform, Train is not used anymore
 case $DATA_TYPE in
     Train)
         ENERGY_LIST=("${Energy_train[@]}")
